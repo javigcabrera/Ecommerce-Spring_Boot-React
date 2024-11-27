@@ -1,0 +1,7 @@
+package com.bazarPepe.eccomerce.repository;
+
+import com.bazarPepe.eccomerce.entity.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CategoryRepository extends JpaRepository<Category,Long> {
+}

@@ -1,0 +1,109 @@
+/* Contenedor principal */
+.login-container {
+    max-width: 1000px; /* Mantiene el ancho grande */
+    margin: 100px auto; /* Más espacio superior */
+    padding: 30px;
+    border: 1px solid #ddd; /* Igual al borde de .register-page */
+    border-radius: 10px; /* Esquinas redondeadas iguales */
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera adicional */
+}
+
+/* Contenedor para organizar imagen y formulario */
+.login-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px; /* Espaciado entre imagen y formulario */
+}
+
+/* Imagen */
+.login-image {
+    flex: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 30px;
+}
+
+.login-image img {
+    max-width: 100%;
+    height: auto;
+    max-height: 400px;
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+/* Formulario */
+.login-form {
+    flex: 1;
+    max-width: 500px;
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 26px;
+    color: #333;
+}
+
+.login-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form label {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.login-form input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #008080;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-form button:hover {
+    background-color: #003131;
+    transform: scale(1.05);
+}
+
+/* Enlace de registro */
+.login-register-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333;
+}
+
+.login-register-link a {
+    text-decoration: none;
+    color: #008080;
+}
+
+.login-register-link a:hover {
+    color: #005959;
+}
+
+/* Mensaje de estado */
+.login-message {
+    text-align: center;
+    color: green;
+    font-size: 16px;
+    margin-bottom: 15px;
+}

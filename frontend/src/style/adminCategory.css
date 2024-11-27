@@ -1,0 +1,74 @@
+.admin-category-page {
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+}
+.admin-category-list{
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.admin-category-list h2{
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+.admin-category-list button{
+    background-color: #008080;
+    color: #fff;
+    font-size: 20px;
+    border: none;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.admin-category-list button:hover{
+    background-color: #003b3b;
+}
+
+.admin-category-list ul li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 10px 10px 15px;
+    margin-bottom: 1.5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.admin-category-list ul li span{
+    color: #444;
+}
+
+.admin-bt button{
+    background-color: rgb(255, 86, 56);
+    color: #fff;
+    border: 8px 16px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.admin-bt .admin-btn-edit{
+    background-color: #008080;
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 90%;
+        padding: 10px;
+    }
+    .container {
+        padding: 10px;
+        flex-direction: column;
+    }
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+button, a {
+    transition: all 0.3s ease;
+}
+button:hover, a:hover {
+    transform: scale(1.05);
+    background-color: #4A90E2;
+}

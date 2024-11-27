@@ -1,0 +1,92 @@
+.admin-product-list {
+    align-items: center;
+    width: 50%;
+    margin: auto;
+    font-size: 16px;
+}
+
+.product-btn {
+    border-radius: 5px;
+    margin: 5px 0px;
+    padding: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 18px;
+    color: #fff;
+    border: none;
+    background-color: #008080;
+}
+
+.product-btn-delete {
+    border-radius: 5px;
+    margin: 5px 0px;
+    padding: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 18px;
+    color: #fff;
+    border: none;
+    background-color: #ff5638;
+}
+
+.admin-product-list button:hover {
+    background-color: #003333;
+}
+
+.admin-product-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.admin-product-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 10px 10px 15px;
+    margin-bottom: 1.5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.admin-product-list li img {
+    width: 100px; 
+    height: auto; 
+    margin-right: 15px; 
+    border-radius: 5px; 
+    object-fit: cover; 
+}
+
+.admin-product-list span {
+    flex: 1;
+    color: #444;
+    margin-left: 10px;
+}
+
+.admin-product-list button {
+    margin-left: 10px;
+}
+
+
+@media (max-width: 768px) {
+    body {
+        font-size: 90%;
+        padding: 10px;
+    }
+    .container {
+        padding: 10px;
+        flex-direction: column;
+    }
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+button, a {
+    transition: all 0.3s ease;
+}
+button:hover, a:hover {
+    transform: scale(1.05);
+    background-color: #4A90E2;
+}

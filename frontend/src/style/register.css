@@ -1,0 +1,108 @@
+/* Contenedor principal */
+.register-container {
+    max-width: 1000px;
+    margin: 100px auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Contenedor para organizar formulario e imagen */
+.register-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Formulario */
+.register-form {
+    flex: 1;
+    max-width: 500px;
+}
+
+.register-form h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 26px;
+    color: #333;
+}
+
+.register-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.register-form label {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.register-form input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.register-form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #008080;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.register-form button:hover {
+    background-color: #003131;
+    transform: scale(1.05);
+}
+
+/* Imagen */
+.register-image {
+    flex: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-image img {
+    max-width: 100%;
+    height: auto;
+    max-height: 400px;
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+/* Enlace de registro */
+.register-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.register-link a {
+    text-decoration: none;
+    color: #008080;
+}
+
+.register-link a:hover {
+    color: #005959;
+}
+
+/* Mensaje */
+.message {
+    text-align: center;
+    color: green;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
