@@ -16,11 +16,11 @@
 }
 
 .pagination button.active {
-    background-color: #06c5c5; /* Más oscuro para la página activa */
+    background-color: #06c5c5; 
 }
 
 .pagination button:hover {
-    background-color: #023b3b; /* Efecto hover profesional */
+    background-color: #023b3b; 
 }
 
 @media (max-width: 768px) {

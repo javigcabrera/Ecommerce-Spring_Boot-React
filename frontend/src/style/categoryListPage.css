@@ -1,4 +1,3 @@
-/* Contenedor principal */
 .category-container {
     max-width: 1200px;
     margin: 50px auto;
@@ -8,7 +7,6 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Título */
 .category-container h2 {
     font-size: 2.5rem;
     margin-bottom: 30px;
@@ -17,7 +15,6 @@
     font-weight: bold;
 }
 
-/* Grid de categorías */
 .category-grid {
     list-style-type: none;
     padding: 0;
@@ -27,14 +24,12 @@
     justify-content: center;
 }
 
-/* Elemento individual de categoría */
 .category-item {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Botones estilizados */
 .category-item button {
     width: 100%;
     padding: 15px;
@@ -56,7 +51,6 @@
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Mensaje de error */
 .error-message {
     color: red;
     text-align: center;
@@ -64,7 +58,6 @@
     margin-top: 20px;
 }
 
-/* Responsivo */
 @media (max-width: 768px) {
     .category-container {
         padding: 10px;

@@ -1,23 +1,20 @@
-/* Contenedor principal */
 .login-container {
-    max-width: 1000px; /* Mantiene el ancho grande */
-    margin: 100px auto; /* Más espacio superior */
+    max-width: 1000px; 
+    margin: 100px auto; 
     padding: 30px;
-    border: 1px solid #ddd; /* Igual al borde de .register-page */
-    border-radius: 10px; /* Esquinas redondeadas iguales */
+    border: 1px solid #ddd; 
+    border-radius: 10px; 
     background-color: #f9f9f9;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera adicional */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
-/* Contenedor para organizar imagen y formulario */
 .login-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px; /* Espaciado entre imagen y formulario */
+    gap: 20px; 
 }
 
-/* Imagen */
 .login-image {
     flex: 1.5;
     display: flex;
@@ -34,7 +31,6 @@
     object-fit: contain;
 }
 
-/* Formulario */
 .login-form {
     flex: 1;
     max-width: 500px;
@@ -83,7 +79,6 @@
     transform: scale(1.05);
 }
 
-/* Enlace de registro */
 .login-register-link {
     text-align: center;
     margin-top: 20px;
@@ -100,7 +95,6 @@
     color: #005959;
 }
 
-/* Mensaje de estado */
 .login-message {
     text-align: center;
     color: green;

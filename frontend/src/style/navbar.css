@@ -48,7 +48,7 @@
     padding: 10px 20px;
     border: none;
     margin-left: 5px;
-    background-color: #008080; /* Azul profesional */
+    background-color: #008080;
     color: #FFF;
     font-weight: bold;
     border-radius: 3px;
@@ -58,7 +58,7 @@
 }
 
 .navbar-search button:hover {
-    background-color: #023b3b; /* Azul más oscuro */
+    background-color: #023b3b; 
 }
 
 .navbar-link {
@@ -76,7 +76,7 @@
 }
 
 .navbar-link a:hover {
-    background-color: #023b3b; /* Azul profesional */
+    background-color: #023b3b;
 }
 
 @media (max-width: 768px) {
@@ -86,34 +86,34 @@
     }
 
     .navbar-brand {
-        order: -1; /* Mueve el logo al inicio */
-        justify-content: center; /* Centra el logo */
-        width: 100%; /* Ocupa toda la fila */
+        order: -1; 
+        justify-content: center;
+        width: 100%;
     }
 
     .navbar-brand img {
-        max-width: 95%; /* Ocupa casi toda la pantalla */
+        max-width: 95%; 
     }
 
     .navbar-search {
-        flex-direction: column; /* Coloca elementos en columna */
+        flex-direction: column; 
         max-width: 100%;
         width: 100%;
         margin-top: 10px;
-        align-items: center; /* Centra los elementos */
+        align-items: center; 
     }
 
     .navbar-search input {
         margin-bottom: 10px;
-        width: 90%; /* Ocupa casi todo el ancho */
+        width: 90%; 
         box-sizing: border-box;
     }
 
     .navbar-search button {
-        width: auto; /* Botón pequeño estilo botón */
-        padding: 8px 12px; /* Ajusta el tamaño */
-        font-size: 14px; /* Fuente más pequeña */
-        margin-left: 0; /* Elimina el margen lateral */
-        align-self: center; /* Centra el botón debajo del campo */
+        width: auto; 
+        padding: 8px 12px; 
+        font-size: 14px; 
+        margin-left: 0; 
+        align-self: center; 
     }
 }

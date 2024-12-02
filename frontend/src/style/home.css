@@ -1,7 +1,7 @@
 .home {
     padding: 20px;
     max-width: 100%;
-    overflow-x: hidden; /* Evita scroll horizontal */
+    overflow-x: hidden; 
 }
 
 .error-message {
@@ -38,7 +38,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
-    max-width: 100%; /* Asegura que no se desborde */
+    max-width: 100%; 
     overflow-x: hidden;
 }
 
@@ -48,7 +48,7 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Elimina scroll horizontal innecesario */
+    overflow-x: hidden; 
 }
 
 button, a {
