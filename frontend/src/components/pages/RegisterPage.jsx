@@ -105,7 +105,7 @@ const RegisterPage = () => {
                 <div className="register-image">
                     <img
                         src="/logo.png"
-                        alt="Bazar Pepe"
+                        alt="Ecommerce"
                     />
                 </div>
             </div>

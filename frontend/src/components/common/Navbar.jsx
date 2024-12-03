@@ -55,7 +55,7 @@ const Navbar=()=>{
                  {/* LOGO QUE REDIRIGE A LA PÁGINA PRINCIPAL */}
                  <img 
                     src="/logo_horizontal.png" 
-                    alt="Bazar Pepe" 
+                    alt="Ecommerce" 
                     onClick={handleHomeClick} 
                     style={{ cursor: "pointer" }} // Asegura que el cursor muestre que es clicable
                 />

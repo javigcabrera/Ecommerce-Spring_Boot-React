@@ -52,7 +52,7 @@ const LoginPage = () => {
                 <div className="login-image">
                     <img 
                         src="/logo.png" 
-                        alt="Bazar Pepe" 
+                        alt="Ecommerce" 
                     />
                 </div>
                 <div className="login-form">

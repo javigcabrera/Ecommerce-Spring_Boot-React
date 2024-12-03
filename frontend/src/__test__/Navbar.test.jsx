@@ -114,7 +114,7 @@ describe("Navbar Component", () => {
       </Router>
     );
 
-    const logo = screen.getByAltText("Bazar Pepe");
+    const logo = screen.getByAltText("Ecommerce");
     fireEvent.click(logo);
 
     expect(mockNavigate).toHaveBeenCalledWith("/");
