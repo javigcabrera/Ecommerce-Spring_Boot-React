@@ -21,7 +21,7 @@ const AdminCategoryPage = () => {
             setCategories(response.categoryList || []); // GUARDA LAS CATEGORÍAS EN EL ESTADO
         } catch (error) {
             // GESTIONA LOS ERRORES SI FALLA LA PETICIÓN
-            console.log("Se ha producido un error al cargar la lista de categorías", error);
+            console.log("An error occurred while loading the list of categories", error);
         }
     };
 
@@ -32,14 +32,14 @@ const AdminCategoryPage = () => {
 
     // FUNCIÓN PARA ELIMINAR UNA CATEGORÍA
     const handleDelete = async (id) => {
-        const confirmed = window.confirm("¿Estás seguro de que quieres eliminar esta categoría?"); // CONFIRMA LA ACCIÓN
+        const confirmed = window.confirm("Are you sure you want to delete this category?"); // CONFIRMA LA ACCIÓN
         if (confirmed) {
             try {
                 await ApiService.deleteCategory(id); // LLAMA AL MÉTODO PARA ELIMINAR LA CATEGORÍA
                 fetchCategories(); // ACTUALIZA LA LISTA DE CATEGORÍAS
             } catch (error) {
                 // GESTIONA LOS ERRORES SI FALLA LA ELIMINACIÓN
-                console.log("Se ha producido un error borrando la categoría");
+                console.log("An error occurred while deleting the category.");
             }
         }
     };
@@ -48,9 +48,9 @@ const AdminCategoryPage = () => {
     return (
         <div className="admin-category-page">
             <div className="admin-category-list">
-                <h2>Categorías</h2>
+                <h2>Categories</h2>
                 {/* BOTÓN PARA AÑADIR UNA NUEVA CATEGORÍA */}
-                <button onClick={() => navigate('/admin/add-category')}>Añadir Categoría</button>
+                <button onClick={() => navigate('/admin/add-category')}>Add Category</button>
                 {/* LISTA DE CATEGORÍAS */}
                 <ul>
                     {categories.map((category) => (
@@ -58,9 +58,9 @@ const AdminCategoryPage = () => {
                             <span>{category.name}</span>
                             <div className="admin-bt">
                                 {/* BOTÓN PARA EDITAR UNA CATEGORÍA */}
-                                <button className="admin-btn-edit" onClick={() => handleEdit(category.id)}>Editar</button>
+                                <button className="admin-btn-edit" onClick={() => handleEdit(category.id)}>Edit</button>
                                 {/* BOTÓN PARA BORRAR UNA CATEGORÍA */}
-                                <button onClick={() => handleDelete(category.id)}>Borrar</button>
+                                <button onClick={() => handleDelete(category.id)}>Delete</button>
                             </div>
                         </li>
                     ))}

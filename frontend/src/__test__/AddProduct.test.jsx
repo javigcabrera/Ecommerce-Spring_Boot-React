@@ -32,11 +32,12 @@ describe("AddProduct Component", () => {
 
     await waitFor(() => getByRole("combobox"));
 
-    expect(getByPlaceholderText("Nombre Producto")).toBeInTheDocument();
-    expect(getByPlaceholderText("Descripción Producto")).toBeInTheDocument();
-    expect(getByPlaceholderText("Precio")).toBeInTheDocument();
+    // Verifica que los placeholders estén en inglés como "Product Name", "Product Description" y "Price"
+    expect(getByPlaceholderText("Product Name")).toBeInTheDocument();
+    expect(getByPlaceholderText("Product Description")).toBeInTheDocument();
+    expect(getByPlaceholderText("Price")).toBeInTheDocument();
     expect(getByRole("combobox")).toBeInTheDocument();
-    expect(getByText("Añadir")).toBeInTheDocument();
+    expect(getByText("Add")).toBeInTheDocument();
   });
 
   it("debería cargar las categorías correctamente", async () => {
@@ -63,17 +64,17 @@ describe("AddProduct Component", () => {
 
     await waitFor(() => getByRole("combobox"));
 
-    const nameInput = getByPlaceholderText("Nombre Producto");
-    fireEvent.change(nameInput, { target: { value: "Producto Nuevo" } });
-    expect(nameInput.value).toBe("Producto Nuevo");
+    const nameInput = getByPlaceholderText("Product Name");
+    fireEvent.change(nameInput, { target: { value: "Nuevo Producto" } });
+    expect(nameInput.value).toBe("Nuevo Producto");
 
-    const descriptionInput = getByPlaceholderText("Descripción Producto");
-    fireEvent.change(descriptionInput, { target: { value: "Descripción nueva" } });
-    expect(descriptionInput.value).toBe("Descripción nueva");
+    const descriptionInput = getByPlaceholderText("Product Description");
+    fireEvent.change(descriptionInput, { target: { value: "Descripción detallada" } });
+    expect(descriptionInput.value).toBe("Descripción detallada");
 
-    const priceInput = getByPlaceholderText("Precio");
-    fireEvent.change(priceInput, { target: { value: "100" } });
-    expect(priceInput.value).toBe("100");
+    const priceInput = getByPlaceholderText("Price");
+    fireEvent.change(priceInput, { target: { value: "50" } });
+    expect(priceInput.value).toBe("50");
   });
 
   it("debería mostrar un mensaje de éxito cuando se añade un producto correctamente", async () => {
@@ -90,16 +91,16 @@ describe("AddProduct Component", () => {
 
     await waitFor(() => getByRole("combobox"));
 
-    const nameInput = getByPlaceholderText("Nombre Producto");
-    fireEvent.change(nameInput, { target: { value: "Producto Nuevo" } });
+    const nameInput = getByPlaceholderText("Product Name");
+    fireEvent.change(nameInput, { target: { value: "Nuevo Producto" } });
 
-    const descriptionInput = getByPlaceholderText("Descripción Producto");
-    fireEvent.change(descriptionInput, { target: { value: "Descripción nueva" } });
+    const descriptionInput = getByPlaceholderText("Product Description");
+    fireEvent.change(descriptionInput, { target: { value: "Descripción detallada" } });
 
-    const priceInput = getByPlaceholderText("Precio");
-    fireEvent.change(priceInput, { target: { value: "100" } });
+    const priceInput = getByPlaceholderText("Price");
+    fireEvent.change(priceInput, { target: { value: "50" } });
 
-    const submitButton = getByText("Añadir");
+    const submitButton = getByText("Add");
     fireEvent.click(submitButton);
 
     const successMessage = await findByText("Producto añadido con éxito");
@@ -119,16 +120,16 @@ describe("AddProduct Component", () => {
 
     await waitFor(() => getByRole("combobox"));
 
-    const nameInput = getByPlaceholderText("Nombre Producto");
-    fireEvent.change(nameInput, { target: { value: "Producto Nuevo" } });
+    const nameInput = getByPlaceholderText("Product Name");
+    fireEvent.change(nameInput, { target: { value: "Nuevo Producto" } });
 
-    const descriptionInput = getByPlaceholderText("Descripción Producto");
-    fireEvent.change(descriptionInput, { target: { value: "Descripción nueva" } });
+    const descriptionInput = getByPlaceholderText("Product Description");
+    fireEvent.change(descriptionInput, { target: { value: "Descripción detallada" } });
 
-    const priceInput = getByPlaceholderText("Precio");
-    fireEvent.change(priceInput, { target: { value: "100" } });
+    const priceInput = getByPlaceholderText("Price");
+    fireEvent.change(priceInput, { target: { value: "50" } });
 
-    const submitButton = getByText("Añadir");
+    const submitButton = getByText("Add");
     fireEvent.click(submitButton);
 
     const errorMessage = await findByText("Error al añadir el producto");
@@ -146,21 +147,19 @@ describe("AddProduct Component", () => {
 
     await waitFor(() => getByRole("combobox"));
 
-    const nameInput = getByPlaceholderText("Nombre Producto");
-    fireEvent.change(nameInput, { target: { value: "Producto Nuevo" } });
+    const nameInput = getByPlaceholderText("Product Name");
+    fireEvent.change(nameInput, { target: { value: "Nuevo Producto" } });
 
-    const descriptionInput = getByPlaceholderText("Descripción Producto");
-    fireEvent.change(descriptionInput, { target: { value: "Descripción nueva" } });
+    const descriptionInput = getByPlaceholderText("Product Description");
+    fireEvent.change(descriptionInput, { target: { value: "Descripción detallada" } });
 
-    const priceInput = getByPlaceholderText("Precio");
-    fireEvent.change(priceInput, { target: { value: "100" } });
+    const priceInput = getByPlaceholderText("Price");
+    fireEvent.change(priceInput, { target: { value: "50" } });
 
-    const submitButton = getByText("Añadir");
+    const submitButton = getByText("Add");
     fireEvent.click(submitButton);
 
     const errorMessage = await findByText("Error desconocido");
     expect(errorMessage).toBeInTheDocument();
   });
-
-  
 });

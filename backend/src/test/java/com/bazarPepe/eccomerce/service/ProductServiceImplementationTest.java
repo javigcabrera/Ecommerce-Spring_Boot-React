@@ -70,7 +70,7 @@ class ProductServiceImplementationTest {
 
         verify(productRepository, times(1)).save(any(Product.class));
         assertEquals(200, response.getStatus());
-        assertEquals("Producto creado con éxito", response.getMessage());
+        assertEquals("Product created successfully.", response.getMessage());
     }
 
     @Test
@@ -80,7 +80,7 @@ class ProductServiceImplementationTest {
         NotFoundException exception = assertThrows(NotFoundException.class, () ->
                 productService.createProduct(1L, mockMultipartFile, "New Product", "Description", BigDecimal.valueOf(200.00))
         );
-        assertEquals("No existe esa categoría", exception.getMessage());
+        assertEquals("That category does not exist.", exception.getMessage());
         verify(productRepository, never()).save(any(Product.class));
     }
 
@@ -91,7 +91,7 @@ class ProductServiceImplementationTest {
         InvalidCredentialsException exception = assertThrows(InvalidCredentialsException.class, () ->
                 productService.createProduct(1L, null, "New Product", "Description", BigDecimal.valueOf(200.00))
         );
-        assertEquals("La imagen es obligatoria", exception.getMessage());
+        assertEquals("Image is required.", exception.getMessage());
         verify(productRepository, never()).save(any(Product.class));
     }
 
@@ -103,7 +103,7 @@ class ProductServiceImplementationTest {
         InvalidCredentialsException exception = assertThrows(InvalidCredentialsException.class, () ->
                 productService.createProduct(1L, mockMultipartFile, "New Product", "Description", BigDecimal.valueOf(200.00))
         );
-        assertEquals("El archivo proporcionado no es una imagen válida", exception.getMessage());
+        assertEquals("The provided file is not a valid image.", exception.getMessage());
         verify(productRepository, never()).save(any(Product.class));
     }
 
@@ -122,7 +122,7 @@ class ProductServiceImplementationTest {
         assertEquals(BigDecimal.valueOf(150.00), mockProduct.getPrice());
         assertEquals(mockCategory, mockProduct.getCategory());
         assertEquals(200, response.getStatus());
-        assertEquals("Producto actualizado correctamente", response.getMessage());
+        assertEquals("Product updated successfully.", response.getMessage());
     }
 
     @Test
@@ -136,7 +136,7 @@ class ProductServiceImplementationTest {
         assertEquals("Test Description", mockProduct.getDescription());
         assertEquals(BigDecimal.valueOf(100.00), mockProduct.getPrice());
         assertEquals(200, response.getStatus());
-        assertEquals("Producto actualizado correctamente", response.getMessage());
+        assertEquals("Product updated successfully.", response.getMessage());
     }
 
     @Test
@@ -147,7 +147,7 @@ class ProductServiceImplementationTest {
 
         verify(productRepository, times(1)).delete(mockProduct);
         assertEquals(200, response.getStatus());
-        assertEquals("Se ha eliminado el producto correctamente", response.getMessage());
+        assertEquals("The product has been deleted successfully.", response.getMessage());
     }
 
     @Test
@@ -157,7 +157,7 @@ class ProductServiceImplementationTest {
         NotFoundException exception = assertThrows(NotFoundException.class, () ->
                 productService.deleteProduct(1L)
         );
-        assertEquals("No se ha encontrado el producto", exception.getMessage());
+        assertEquals("The product was not found.", exception.getMessage());
     }
 
     @Test
@@ -180,7 +180,7 @@ class ProductServiceImplementationTest {
         NotFoundException exception = assertThrows(NotFoundException.class, () ->
                 productService.getProductById(1L)
         );
-        assertEquals("No se ha encontrado el producto", exception.getMessage());
+        assertEquals("The product was not found.", exception.getMessage());
     }
 
     @Test
@@ -216,6 +216,6 @@ class ProductServiceImplementationTest {
         NotFoundException exception = assertThrows(NotFoundException.class, () ->
                 productService.searchProduct("Nonexistent")
         );
-        assertEquals("No se han encontrado productos", exception.getMessage());
+        assertEquals("No products were found.", exception.getMessage());
     }
 }

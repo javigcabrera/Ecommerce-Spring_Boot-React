@@ -59,7 +59,7 @@ class CategoryServiceImplementationTest {
 
         // Validar respuesta
         assertEquals(200, response.getStatus());
-        assertEquals("Categoria creada con exito", response.getMessage());
+        assertEquals("Category created successfully.", response.getMessage());
     }
 
     @Test
@@ -80,7 +80,7 @@ class CategoryServiceImplementationTest {
 
         // Validar respuesta
         assertEquals(200, response.getStatus());
-        assertEquals("Se ha actualizado con exito", response.getMessage());
+        assertEquals("Successfully updated.", response.getMessage());
         assertEquals("Updated Electronics", mockCategory.getName());
     }
 
@@ -169,7 +169,7 @@ class CategoryServiceImplementationTest {
 
         // Validar respuesta
         assertEquals(200, response.getStatus());
-        assertEquals("Se ha eliminado con exito la categoria", response.getMessage());
+        assertEquals("The category has been successfully deleted.", response.getMessage());
     }
 
     @Test

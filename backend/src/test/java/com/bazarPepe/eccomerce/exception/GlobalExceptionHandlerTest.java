@@ -25,7 +25,7 @@ class GlobalExceptionHandlerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
         assertNotNull(responseEntity.getBody());
         assertEquals(500, responseEntity.getBody().getStatus());
-        assertEquals("Datos incorrectos, por favor intentalo de nuevo.", responseEntity.getBody().getMessage());
+        assertEquals("Incorrect data, please try again.", responseEntity.getBody().getMessage());
     }
 
     @Test
@@ -64,7 +64,7 @@ class GlobalExceptionHandlerTest {
         assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
         assertNotNull(responseEntity.getBody());
         assertEquals(400, responseEntity.getBody().getStatus());
-        assertEquals("Dato incorrecto, pruebe otra opción.", responseEntity.getBody().getMessage());
+        assertEquals("Incorrect data, please try another option.", responseEntity.getBody().getMessage());
     }
 
     @Test
@@ -76,6 +76,6 @@ class GlobalExceptionHandlerTest {
         assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
         assertNotNull(responseEntity.getBody());
         assertEquals(400, responseEntity.getBody().getStatus());
-        assertEquals("Dato incorrecto, pruebe otra opción.", responseEntity.getBody().getMessage());
+        assertEquals("Incorrect data, please try another option.", responseEntity.getBody().getMessage());
     }
 }

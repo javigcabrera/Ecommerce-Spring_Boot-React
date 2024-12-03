@@ -21,10 +21,10 @@ describe("AdminPage Component", () => {
       </Router>
     );
 
-    expect(getByText("Bienvenido Admin")).toBeInTheDocument();
-    expect(getByText("Gestionar Categorias")).toBeInTheDocument();
-    expect(getByText("Gestionar Productos")).toBeInTheDocument();
-    expect(getByText("Gestionar Pedidos")).toBeInTheDocument();
+    expect(getByText("Welcome Admin")).toBeInTheDocument();
+    expect(getByText("Manage Categories")).toBeInTheDocument();
+    expect(getByText("Manage Products")).toBeInTheDocument();
+    expect(getByText("Manage Orders")).toBeInTheDocument();
   });
 
   it("debería navegar a la página de categorías al hacer clic en 'Gestionar Categorias'", () => {
@@ -37,7 +37,7 @@ describe("AdminPage Component", () => {
       </Router>
     );
 
-    const categoriasButton = getByText("Gestionar Categorias");
+    const categoriasButton = getByText("Manage Categories");
     fireEvent.click(categoriasButton);
 
     expect(navigate).toHaveBeenCalledWith("/admin/categories");
@@ -53,7 +53,7 @@ describe("AdminPage Component", () => {
       </Router>
     );
 
-    const productosButton = getByText("Gestionar Productos");
+    const productosButton = getByText("Manage Products");
     fireEvent.click(productosButton);
 
     expect(navigate).toHaveBeenCalledWith("/admin/products");
@@ -69,7 +69,7 @@ describe("AdminPage Component", () => {
       </Router>
     );
 
-    const pedidosButton = getByText("Gestionar Pedidos");
+    const pedidosButton = getByText("Manage Orders");
     fireEvent.click(pedidosButton);
 
     expect(navigate).toHaveBeenCalledWith("/admin/orders");

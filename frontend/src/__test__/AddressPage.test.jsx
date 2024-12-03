@@ -27,9 +27,9 @@ describe('AddressPage', () => {
             </MemoryRouter>
         );
 
-        // Usar roles en lugar de getByText para evitar conflictos
-        expect(screen.getByRole('heading', { name: /Añadir direccion/i })).toBeInTheDocument();
-        expect(screen.getByRole('button', { name: /Añadir direccion/i })).toBeInTheDocument();
+        // Cambiar a "Add Address" ya que es el texto real en el componente
+        expect(screen.getByRole('heading', { name: /Add Address/i })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /Add Address/i })).toBeInTheDocument();
     });
 
     it('debería renderizar el formulario de editar dirección si está en la ruta "/edit-address"', async () => {
@@ -51,7 +51,8 @@ describe('AddressPage', () => {
             </MemoryRouter>
         );
 
-        expect(screen.getByRole('heading', { name: /Editar Direccion/i })).toBeInTheDocument();
+        // Cambiar a "Edit Address" ya que es el texto real en el componente
+        expect(screen.getByRole('heading', { name: /Edit Address/i })).toBeInTheDocument();
 
         await waitFor(() => {
             expect(screen.getByDisplayValue('123 Calle Falsa')).toBeInTheDocument();
@@ -87,11 +88,11 @@ describe('AddressPage', () => {
             </MemoryRouter>
         );
 
-        fireEvent.change(screen.getByLabelText(/Calle/i), { target: { name: 'street', value: 'Calle 1' } });
-        fireEvent.change(screen.getByLabelText(/Ciudad/i), { target: { name: 'city', value: 'Ciudad X' } });
-        fireEvent.change(screen.getByLabelText(/Provincia/i), { target: { name: 'state', value: 'Estado Y' } });
-        fireEvent.change(screen.getByLabelText(/Codigo Postal/i), { target: { name: 'zipCode', value: '12345' } });
-        fireEvent.change(screen.getByLabelText(/Pais/i), { target: { name: 'country', value: 'Pais Z' } });
+        fireEvent.change(screen.getByLabelText(/Street/i), { target: { name: 'street', value: 'Calle 1' } });
+        fireEvent.change(screen.getByLabelText(/City/i), { target: { name: 'city', value: 'Ciudad X' } });
+        fireEvent.change(screen.getByLabelText(/State/i), { target: { name: 'state', value: 'Estado Y' } });
+        fireEvent.change(screen.getByLabelText(/Zip Code/i), { target: { name: 'zipCode', value: '12345' } });
+        fireEvent.change(screen.getByLabelText(/Country/i), { target: { name: 'country', value: 'Pais Z' } });
 
         expect(screen.getByDisplayValue('Calle 1')).toBeInTheDocument();
         expect(screen.getByDisplayValue('Ciudad X')).toBeInTheDocument();
@@ -99,7 +100,7 @@ describe('AddressPage', () => {
         expect(screen.getByDisplayValue('12345')).toBeInTheDocument();
         expect(screen.getByDisplayValue('Pais Z')).toBeInTheDocument();
 
-        fireEvent.click(screen.getByRole('button', { name: /Añadir direccion/i }));
+        fireEvent.click(screen.getByRole('button', { name: /Add Address/i }));
 
         await waitFor(() => {
             expect(ApiService.saveAndUpdateAddress).toHaveBeenCalledWith({
@@ -112,5 +113,49 @@ describe('AddressPage', () => {
         });
     });
 
-    
+    it('debería mostrar un mensaje de error si la API falla', async () => {
+        ApiService.saveAndUpdateAddress.mockRejectedValueOnce({
+            response: { data: { message: 'Error al añadir la dirección' } },
+        });
+
+        render(
+            <MemoryRouter initialEntries={['/add-address']}>
+                <AddressPage />
+            </MemoryRouter>
+        );
+
+        fireEvent.change(screen.getByLabelText(/Street/i), { target: { name: 'street', value: 'Calle 1' } });
+        fireEvent.change(screen.getByLabelText(/City/i), { target: { name: 'city', value: 'Ciudad X' } });
+        fireEvent.change(screen.getByLabelText(/State/i), { target: { name: 'state', value: 'Estado Y' } });
+        fireEvent.change(screen.getByLabelText(/Zip Code/i), { target: { name: 'zipCode', value: '12345' } });
+        fireEvent.change(screen.getByLabelText(/Country/i), { target: { name: 'country', value: 'Pais Z' } });
+
+        fireEvent.click(screen.getByRole('button', { name: /Add Address/i }));
+
+        await waitFor(() => {
+            expect(screen.getByText('Error al añadir la dirección')).toBeInTheDocument();
+        });
+    });
+
+    it('debería manejar errores desconocidos correctamente', async () => {
+        ApiService.saveAndUpdateAddress.mockRejectedValueOnce(new Error("Error desconocido"));
+
+        render(
+            <MemoryRouter initialEntries={['/add-address']}>
+                <AddressPage />
+            </MemoryRouter>
+        );
+
+        fireEvent.change(screen.getByLabelText(/Street/i), { target: { name: 'street', value: 'Calle 1' } });
+        fireEvent.change(screen.getByLabelText(/City/i), { target: { name: 'city', value: 'Ciudad X' } });
+        fireEvent.change(screen.getByLabelText(/State/i), { target: { name: 'state', value: 'Estado Y' } });
+        fireEvent.change(screen.getByLabelText(/Zip Code/i), { target: { name: 'zipCode', value: '12345' } });
+        fireEvent.change(screen.getByLabelText(/Country/i), { target: { name: 'country', value: 'Pais Z' } });
+
+        fireEvent.click(screen.getByRole('button', { name: /Add Address/i }));
+
+        await waitFor(() => {
+            expect(screen.getByText('Error desconocido')).toBeInTheDocument();
+        });
+    });
 });

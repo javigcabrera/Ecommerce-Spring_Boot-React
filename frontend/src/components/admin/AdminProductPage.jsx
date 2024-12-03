@@ -32,7 +32,7 @@ const AdminProductPage = () => {
             setProducts(productList.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
         } catch (error) {
             // GESTIONA LOS ERRORES SI LA PETICIÓN FALLA
-            setError(error.response?.data?.message || error.message || 'No se ha conseguido cargar los productos');
+            setError(error.response?.data?.message || error.message || 'The products could not be loaded.');
         }
     };
 
@@ -48,14 +48,14 @@ const AdminProductPage = () => {
 
     // FUNCIÓN PARA ELIMINAR UN PRODUCTO
     const handleDelete = async (id) => {
-        const confirmed = window.confirm("¿Estás seguro de borrar este producto?"); // CONFIRMACIÓN
+        const confirmed = window.confirm("Are you sure you want to delete this product?"); // CONFIRMACIÓN
         if (confirmed) {
             try {
                 await ApiService.deleteProduct(id); // LLAMA A LA API PARA BORRAR EL PRODUCTO
                 fetchProducts(); // ACTUALIZA LA LISTA DE PRODUCTOS
             } catch (error) {
                 // GESTIONA LOS ERRORES SI LA PETICIÓN FALLA
-                setError(error.response?.data?.message || error.message || 'No se ha podido borrar el producto');
+                setError(error.response?.data?.message || error.message || 'The product could not be deleted.');
             }
         }
     };
@@ -68,10 +68,10 @@ const AdminProductPage = () => {
                 <p className="error-message">{error}</p>
             ) : (
                 <div>
-                    <h2>Productos</h2>
+                    <h2>Products</h2>
                     {/* BOTÓN PARA AÑADIR UN NUEVO PRODUCTO */}
                     <button className="product-btn" onClick={() => { navigate('/admin/add-product'); }}>
-                        Añadir Producto
+                        Add Product
                     </button>
                     {/* LISTA DE PRODUCTOS */}
                     <ul>
@@ -83,9 +83,9 @@ const AdminProductPage = () => {
                                 />
                                 <span>{product.name}</span>
                                 {/* BOTÓN PARA EDITAR UN PRODUCTO */}
-                                <button className="product-btn" onClick={() => handleEdit(product.id)}>Editar</button>
+                                <button className="product-btn" onClick={() => handleEdit(product.id)}>Edit</button>
                                 {/* BOTÓN PARA BORRAR UN PRODUCTO */}
-                                <button className="product-btn-delete" onClick={() => handleDelete(product.id)}>Borrar</button>
+                                <button className="product-btn-delete" onClick={() => handleDelete(product.id)}>Delete</button>
                             </li>
                         ))}
                     </ul>

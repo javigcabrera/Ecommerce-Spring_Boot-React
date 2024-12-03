@@ -32,7 +32,7 @@ const ProfilePage = () => {
             setUserInfo(response.user); // GUARDA LOS DATOS DEL USUARIO EN EL ESTADO
         } catch (error) {
             // MANEJA LOS ERRORES DE LA PETICIÓN
-            setError(error.response?.data?.message || error.message || 'No es posible cargar los datos del usuario');
+            setError(error.response?.data?.message || error.message || 'Unable to load user data.');
         }
     };
 
@@ -63,7 +63,7 @@ const ProfilePage = () => {
     // RENDERIZA LA INFORMACIÓN DEL USUARIO
     return (
         <div className="profile-page" data-testid="profile-page">
-            <h2 data-testid="welcome-message">Bienvenido {userInfo.name}</h2>
+            <h2 data-testid="welcome-message">Welcome {userInfo.name}</h2>
 
             {/* SI HAY UN ERROR, LO MUESTRA */}
             {error ? (
@@ -71,31 +71,31 @@ const ProfilePage = () => {
             ) : (
                 <div>
                     {/* INFORMACIÓN BÁSICA DEL USUARIO */}
-                    <p data-testid="user-name"><strong>Nombre: </strong>{userInfo.name}</p>
+                    <p data-testid="user-name"><strong>Name: </strong>{userInfo.name}</p>
                     <p data-testid="user-email"><strong>Email: </strong>{userInfo.email}</p>
-                    <p data-testid="user-phone"><strong>Número Teléfono: </strong>{userInfo.phoneNumber}</p>
+                    <p data-testid="user-phone"><strong>Phone Number: </strong>{userInfo.phoneNumber}</p>
                 
                     {/* INFORMACIÓN DE DIRECCIÓN */}
                     <div data-testid="address-info">
-                        <h3>Dirección</h3>
+                        <h3>Address</h3>
                         {userInfo.address ? (
                             <div>
-                                <p data-testid="user-street"><strong>Calle: </strong>{userInfo.address.street}</p>
-                                <p data-testid="user-city"><strong>Ciudad: </strong>{userInfo.address.city}</p>
-                                <p data-testid="user-state"><strong>Provincia: </strong>{userInfo.address.state}</p>
-                                <p data-testid="user-zipcode"><strong>Código Postal: </strong>{userInfo.address.zipCode}</p>
-                                <p data-testid="user-country"><strong>País: </strong>{userInfo.address.country}</p>
+                                <p data-testid="user-street"><strong>Street: </strong>{userInfo.address.street}</p>
+                                <p data-testid="user-city"><strong>City: </strong>{userInfo.address.city}</p>
+                                <p data-testid="user-state"><strong>State: </strong>{userInfo.address.state}</p>
+                                <p data-testid="user-zipcode"><strong>Zip Code: </strong>{userInfo.address.zipCode}</p>
+                                <p data-testid="user-country"><strong>Country: </strong>{userInfo.address.country}</p>
                             </div>
                         ) : (
-                            <p>No hay información de dirección disponible</p>
+                            <p>No address information available</p>
                         )}
                         <button className="profile-button" onClick={handleAddressClick} data-testid="address-button">
-                            {userInfo.address ? "Editar dirección" : "Añadir dirección"}
+                            {userInfo.address ? "Edit Address" : "Add Address"}
                         </button>
                     </div>
 
                     {/* HISTORIAL DE PEDIDOS */}
-                    <h3>Historial de pedidos</h3>
+                    <h3>Order History</h3>
                     <ul data-testid="order-list">
                         {paginatedOrders.map(order => (
                             <li key={order.id} data-testid={`order-item-${order.id}`}>
@@ -107,10 +107,10 @@ const ProfilePage = () => {
                                 />
                                 <div>
                                     {/* DETALLES DEL PRODUCTO EN EL PEDIDO */}
-                                    <p data-testid={`order-product-name-${order.id}`}><strong>Nombre: </strong>{order.product.name}</p>
-                                    <p data-testid={`order-status-${order.id}`}><strong>Estado: </strong>{order.status}</p>
-                                    <p data-testid={`order-quantity-${order.id}`}><strong>Cantidad: </strong>{order.quantity}</p>
-                                    <p data-testid={`order-price-${order.id}`}><strong>Precio: </strong>€{order.price.toFixed(2)}</p>
+                                    <p data-testid={`order-product-name-${order.id}`}><strong>Name: </strong>{order.product.name}</p>
+                                    <p data-testid={`order-status-${order.id}`}><strong>Status: </strong>{order.status}</p>
+                                    <p data-testid={`order-quantity-${order.id}`}><strong>Quantity: </strong>{order.quantity}</p>
+                                    <p data-testid={`order-price-${order.id}`}><strong>Price: </strong>€{order.price.toFixed(2)}</p>
                                 </div>
                             </li>
                         ))}

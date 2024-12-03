@@ -42,7 +42,7 @@ const ProductList=({products})=>{
                             <img src={imageUrl} alt="{product.name}" className="product-image" />
                             <h3>{product.name}</h3>
                             <p>{product.description}</p>
-                            <span>€{product.price.toFixed(2)}</span>
+                            <span>{product.price.toFixed(2)}€</span>
                         </Link>
                          {/* BOTONES DE CONTROL DE CANTIDAD Y AGREGAR AL CARRITO */}
                         {cartItem?(
@@ -52,7 +52,7 @@ const ProductList=({products})=>{
                                 <button onClick={()=> incrementItem(product)}> + </button>
                             </div>
                         ):(
-                            <button onClick={()=>addToCart(product)}> Añadir al carrito</button>
+                            <button onClick={()=>addToCart(product)}>Add to cart</button>
                         )}
                     </div>
                 )

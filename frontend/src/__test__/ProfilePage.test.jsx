@@ -73,21 +73,20 @@ describe('ProfilePage', () => {
 
         // Esperar a que los datos del usuario se carguen y se muestren
         await waitFor(() => {
-            expect(screen.getByTestId('welcome-message')).toHaveTextContent('Bienvenido Usuario de prueba');
-            expect(screen.getByTestId('user-name')).toHaveTextContent('Nombre: Usuario de prueba');
+            expect(screen.getByTestId('welcome-message')).toHaveTextContent('Welcome Usuario de prueba');
+            expect(screen.getByTestId('user-name')).toHaveTextContent('Name: Usuario de prueba');
             expect(screen.getByTestId('user-email')).toHaveTextContent('Email: usuario@prueba.com');
-            expect(screen.getByTestId('user-phone')).toHaveTextContent('Número Teléfono: 123456789');
+            expect(screen.getByTestId('user-phone')).toHaveTextContent('Phone Number: 123456789');
         });
 
         // Verificar información de dirección
-        expect(screen.getByTestId('user-street')).toHaveTextContent('Calle: Calle de Prueba');
-        expect(screen.getByTestId('user-city')).toHaveTextContent('Ciudad: Ciudad de Prueba');
-        expect(screen.getByTestId('user-state')).toHaveTextContent('Provincia: Estado de Prueba');
-        expect(screen.getByTestId('user-zipcode')).toHaveTextContent('Código Postal: 12345');
-        expect(screen.getByTestId('user-country')).toHaveTextContent('País: País de Prueba');
+        expect(screen.getByTestId('user-street')).toHaveTextContent('Street: Calle de Prueba');
+        expect(screen.getByTestId('user-city')).toHaveTextContent('City: Ciudad de Prueba');
+        expect(screen.getByTestId('user-state')).toHaveTextContent('State: Estado de Prueba');
+        expect(screen.getByTestId('user-zipcode')).toHaveTextContent('Zip Code: 12345');
+        expect(screen.getByTestId('user-country')).toHaveTextContent('Country: País de Prueba');
     });
 
-    
     it('debería navegar a la página de edición o añadir dirección al hacer clic en el botón de dirección', async () => {
         // Configurar el mock para los datos del usuario sin dirección
         ApiService.getLoggedInUserInfo.mockResolvedValueOnce({
@@ -109,7 +108,7 @@ describe('ProfilePage', () => {
 
         // Esperar a que los datos del usuario se carguen
         await waitFor(() => {
-            expect(screen.getByTestId('welcome-message')).toHaveTextContent('Bienvenido Usuario de prueba');
+            expect(screen.getByTestId('welcome-message')).toHaveTextContent('Welcome Usuario de prueba');
         });
 
         // Hacer clic en el botón para añadir la dirección
@@ -146,7 +145,7 @@ describe('ProfilePage', () => {
 
         // Esperar a que los datos del usuario se carguen
         await waitFor(() => {
-            expect(screen.getByTestId('welcome-message')).toHaveTextContent('Bienvenido Usuario de prueba');
+            expect(screen.getByTestId('welcome-message')).toHaveTextContent('Welcome Usuario de prueba');
         });
 
         // Hacer clic en el botón para editar la dirección

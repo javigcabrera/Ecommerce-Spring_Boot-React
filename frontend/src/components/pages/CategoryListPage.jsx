@@ -21,7 +21,7 @@ const CategoryListPage=()=>{
             const response=await ApiService.getAllCategory();
             setCategories(response.categoryList||[])
         }catch(error){
-            setError(error.response?.data?.message||error.message||'No se puede obtener las categorias')
+            setError(error.response?.data?.message||error.message||'Categories cannot be retrieved.')
         }
     }
 
@@ -35,7 +35,7 @@ const CategoryListPage=()=>{
                 <p className="error-message">{error}</p>
             ) : (
                 <div className="category-content">
-                    <h2>Categorias</h2>
+                    <h2>Categories</h2>
                     <ul className="category-grid">
                         {categories.map((category) => (
                             <li key={category.id} className="category-item">

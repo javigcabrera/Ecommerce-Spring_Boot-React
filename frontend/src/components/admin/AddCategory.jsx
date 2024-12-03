@@ -20,13 +20,13 @@ const AddCategory = () => {
             if (response.status === 200) { // SI LA RESPUESTA ES EXITOSA
                 setMessage(response.message); // MUESTRA EL MENSAJE DE ÉXITO
                 setTimeout(() => {
-                    setMessage('Se ha añadido correctamente la categoría'); // MENSAJE DE CONFIRMACIÓN
+                    setMessage('The category has been successfully added.'); // MENSAJE DE CONFIRMACIÓN
                     navigate("/admin/categories"); // REDIRIGE A LA LISTA DE CATEGORÍAS
                 }, 2000);
             }
         } catch (error) {
             // MANEJA LOS ERRORES SI LA SOLICITUD FALLA
-            setMessage(error.response?.data?.message || error.message || 'No se ha podido añadir la categoría');
+            setMessage(error.response?.data?.message || error.message || 'The category could not be added.');
         }
     };
 
@@ -37,16 +37,16 @@ const AddCategory = () => {
             {message && <p className="message">{message}</p>}
             {/* FORMULARIO PARA AÑADIR UNA NUEVA CATEGORÍA */}
             <form onSubmit={handleSubmit} className="category-form">
-                <h2>Añadir Categoría</h2>
+                <h2>Add Category</h2>
                 {/* CAMPO DE TEXTO PARA EL NOMBRE DE LA CATEGORÍA */}
                 <input 
                     type="text"
-                    placeholder="Nombre Categoría"
+                    placeholder="Category Name"
                     value={name} // ESTADO name
                     onChange={(e) => setName(e.target.value)} // ACTUALIZA EL ESTADO CUANDO EL USUARIO ESCRIBE
                 />
                 {/* BOTÓN PARA ENVIAR EL FORMULARIO */}
-                <button type="submit">Añadir</button>
+                <button type="submit">Add</button>
             </form>
         </div>
     );

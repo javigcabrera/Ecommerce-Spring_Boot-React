@@ -52,33 +52,33 @@ describe("AdminProductPage Component", () => {
     // Esperar a que los productos se carguen
     const products = await waitFor(() => screen.findAllByRole("listitem"));
     expect(products).toHaveLength(2);
-    expect(screen.getByText("Productos")).toBeInTheDocument();
+    expect(screen.getByText("Products")).toBeInTheDocument(); // Cambiado "Productos" por "Products"
     expect(screen.getByText("Producto 1")).toBeInTheDocument();
     expect(screen.getByText("Producto 2")).toBeInTheDocument();
   });
 
-  it("debería navegar a la página de añadir producto al hacer clic en 'Añadir Producto'", () => {
+  it("debería navegar a la página de añadir producto al hacer clic en 'Add Product'", () => {
     render(
       <Router>
         <AdminProductPage />
       </Router>
     );
 
-    const addButton = screen.getByText("Añadir Producto");
+    const addButton = screen.getByText("Add Product"); // Cambiado "Añadir Producto" por "Add Product"
     fireEvent.click(addButton);
 
     // Simula que la navegación fue llamada (usa el mock del router si es necesario)
     expect(window.location.pathname).toBe("/admin/add-product");
   });
 
-  it("debería navegar a la página de edición de producto al hacer clic en 'Editar'", async () => {
+  it("debería navegar a la página de edición de producto al hacer clic en 'Edit'", async () => {
     render(
       <Router>
         <AdminProductPage />
       </Router>
     );
 
-    const editButtons = await waitFor(() => screen.getAllByText("Editar"));
+    const editButtons = await waitFor(() => screen.getAllByText("Edit")); // Cambiado "Editar" por "Edit"
     fireEvent.click(editButtons[0]);
 
     // Simula que la navegación fue llamada (usa el mock del router si es necesario)
@@ -95,7 +95,7 @@ describe("AdminProductPage Component", () => {
       </Router>
     );
 
-    const deleteButtons = await waitFor(() => screen.getAllByText("Borrar"));
+    const deleteButtons = await waitFor(() => screen.getAllByText("Delete")); // Cambiado "Borrar" por "Delete"
     fireEvent.click(deleteButtons[0]);
 
     // Verificar que se haya llamado a deleteProduct con el ID correcto
@@ -117,7 +117,7 @@ describe("AdminProductPage Component", () => {
       </Router>
     );
 
-    const deleteButtons = await waitFor(() => screen.getAllByText("Borrar"));
+    const deleteButtons = await waitFor(() => screen.getAllByText("Delete")); // Cambiado "Borrar" por "Delete"
     fireEvent.click(deleteButtons[0]);
 
     // Verificar que no se haya llamado a deleteProduct

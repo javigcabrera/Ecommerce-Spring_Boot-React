@@ -71,7 +71,8 @@ describe("AdminOrderDetails Component", () => {
       );
     });
 
-    expect(await screen.findByText("Detalles del Pedido")).toBeInTheDocument();
+    // Ajusta el texto para hacer coincidir "Order Details" en inglés.
+    expect(await screen.findByRole("heading", { name: /Order Details/i })).toBeInTheDocument();
     expect(screen.getByText("John Doe")).toBeInTheDocument();
     expect(screen.getByText("john@example.com")).toBeInTheDocument();
     expect(screen.getByText("Producto 1")).toBeInTheDocument();
@@ -111,7 +112,7 @@ describe("AdminOrderDetails Component", () => {
       fireEvent.change(select, { target: { value: "DELIVERED" } });
     });
 
-    const updateButton = screen.getByText("Actualizar Estado");
+    const updateButton = screen.getByRole("button", { name: /Update Status/i }); // Cambia el nombre del botón al inglés
     act(() => {
       fireEvent.click(updateButton);
     });
@@ -119,8 +120,6 @@ describe("AdminOrderDetails Component", () => {
     await waitFor(() =>
       expect(ApiService.updateOrderItemStatus).toHaveBeenCalledWith("1", "DELIVERED")
     );
-    expect(await screen.findByText(/se ha actualizado correctamente/i)).toBeInTheDocument();
+    expect(await screen.findByText(/The status of the product in the order has been successfully updated./i)).toBeInTheDocument();
   });
-
-  
 });

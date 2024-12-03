@@ -20,8 +20,9 @@ describe("AddCategory Component", () => {
       </Router>
     );
 
-    expect(getByPlaceholderText("Nombre Categoría")).toBeInTheDocument();
-    expect(getByText("Añadir")).toBeInTheDocument();
+    // Se busca el placeholder correcto en inglés: "Category Name"
+    expect(getByPlaceholderText("Category Name")).toBeInTheDocument();
+    expect(getByText("Add")).toBeInTheDocument();
   });
 
   it("debería actualizar el estado cuando se escribe en el campo de entrada", () => {
@@ -31,7 +32,7 @@ describe("AddCategory Component", () => {
       </Router>
     );
 
-    const input = getByPlaceholderText("Nombre Categoría");
+    const input = getByPlaceholderText("Category Name");
     fireEvent.change(input, { target: { value: "Nueva Categoría" } });
 
     expect(input.value).toBe("Nueva Categoría");
@@ -49,10 +50,10 @@ describe("AddCategory Component", () => {
       </Router>
     );
 
-    const input = getByPlaceholderText("Nombre Categoría");
+    const input = getByPlaceholderText("Category Name");
     fireEvent.change(input, { target: { value: "Nueva Categoría" } });
 
-    const submitButton = getByText("Añadir");
+    const submitButton = getByText("Add");
     fireEvent.click(submitButton);
 
     const successMessage = await findByText("Categoría creada con éxito");
@@ -70,10 +71,10 @@ describe("AddCategory Component", () => {
       </Router>
     );
 
-    const input = getByPlaceholderText("Nombre Categoría");
+    const input = getByPlaceholderText("Category Name");
     fireEvent.change(input, { target: { value: "Categoría inválida" } });
 
-    const submitButton = getByText("Añadir");
+    const submitButton = getByText("Add");
     fireEvent.click(submitButton);
 
     const errorMessage = await findByText("Error al crear la categoría");
@@ -89,10 +90,10 @@ describe("AddCategory Component", () => {
       </Router>
     );
 
-    const input = getByPlaceholderText("Nombre Categoría");
+    const input = getByPlaceholderText("Category Name");
     fireEvent.change(input, { target: { value: "Categoría inválida" } });
 
-    const submitButton = getByText("Añadir");
+    const submitButton = getByText("Add");
     fireEvent.click(submitButton);
 
     const errorMessage = await findByText("Error desconocido");

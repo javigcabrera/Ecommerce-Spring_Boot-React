@@ -93,7 +93,7 @@ class OrderItemServiceImplementationTest {
         // Verificaciones
         verify(orderRepository, times(1)).save(any(Order.class));
         assertEquals(200, response.getStatus());
-        assertEquals("Se ha completado el pedido", response.getMessage());
+        assertEquals("The order has been completed.", response.getMessage());
     }
 
     @Test
@@ -181,7 +181,7 @@ class OrderItemServiceImplementationTest {
         verify(orderItemRepository, times(1)).save(mockOrderItem);
         assertEquals(OrderStatus.CONFIRMED, mockOrderItem.getStatus());
         assertEquals(200, response.getStatus());
-        assertEquals("Se ha actualizado con exito el estado", response.getMessage());
+        assertEquals("The status has been successfully updated.", response.getMessage());
     }
 
     @Test

@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>59/59</span>
+                <span class='fraction'>62/62</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>59/59</span>
+                <span class='fraction'>62/62</span>
             </div>
         
             
@@ -147,13 +147,25 @@
 <a name='L82'></a><a href='#L82'>82</a>
 <a name='L83'></a><a href='#L83'>83</a>
 <a name='L84'></a><a href='#L84'>84</a>
-<a name='L85'></a><a href='#L85'>85</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
@@ -162,11 +174,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -178,6 +185,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -234,10 +242,13 @@
 <span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import React, {useState} from "react";
 import '../../style/navbar.css';
 import { NavLink, useNavigate } from "react-router-dom";
+import { useCart } from '../context/CartContext'; // HOOK PARA EL CONTEXTO DEL CARRITO
 import ApiService from "../../service/ApiService";
 &nbsp;
 //COMPONENTE NAVBAR PARA LA BARRA DE NAVEGACION
 const Navbar=()=&gt;{
+    // OBTENEMOS EL ESTADO DEL CARRITO Y LA FUNCIÓN dispatch DEL CONTEXTO
+    const { cart, dispatch } = useCart();
 &nbsp;
     //ESTADO LOCAL PARA EL VALOR DEL CAMPO DE BUSQUEDA
     const [searchValue,setSearchValue]=useState("");
@@ -262,11 +273,12 @@ const Navbar=()=&gt;{
 &nbsp;
     //MANEJA EL CIERRE DE SESION DEL USUARIO
     const handleLogout=()=&gt;{
-        const confirm=window.confirm("Estas seguro de que quieres cerrar sesion?");
+        const confirm=window.confirm("Are you sure you want to log out?");
         if(confirm){
             ApiService.logout();
             setTimeout(()=&gt;{
                 navigate('/login')
+                dispatch({ type: 'CLEAR_CART' });
             },500);
         }
     }
@@ -292,7 +304,7 @@ const Navbar=()=&gt;{
             {/* FORMULARIO DE BÚSQUEDA */}
             &lt;form className="navbar-search" onSubmit={handleSearchSubmit}&gt;
                 &lt;input type="text" 
-                       placeholder="Busca productos" 
+                       placeholder="Search products" 
                        value={searchValue} 
                        onChange={handleSearchChange}
                 /&gt;
@@ -302,12 +314,12 @@ const Navbar=()=&gt;{
             {/* LINKS DE NAVEGACIÓN */}
             &lt;div className="navbar-link"&gt;
                 &lt;NavLink to="/" onClick={handleHomeClick}&gt;Home&lt;/NavLink&gt;
-                &lt;NavLink to="/categories"&gt;Categorias&lt;/NavLink&gt;
-                { isAuthenticated &amp;&amp; &lt;NavLink to="/profile"&gt;Mi Perfil&lt;/NavLink&gt;}
+                &lt;NavLink to="/categories"&gt;Categories&lt;/NavLink&gt;
+                { isAuthenticated &amp;&amp; &lt;NavLink to="/profile"&gt;My Profile&lt;/NavLink&gt;}
                 { <span class="branch-0 cbranch-no" title="branch not covered" >isAdmin &amp;&amp; &lt;NavLink to="/admin"&gt;Admin&lt;/NavLink&gt;}</span>
                 { !isAuthenticated &amp;&amp; &lt;NavLink to="/login"&gt;Login&lt;/NavLink&gt;}
                 { isAuthenticated &amp;&amp; &lt;NavLink onClick={handleLogout}&gt;Logout&lt;/NavLink&gt;}
-                &lt;NavLink to="/cart"&gt;Carrito&lt;/NavLink&gt;
+                &lt;NavLink to="/cart"&gt;Cart&lt;/NavLink&gt;
             &lt;/div&gt;
 &nbsp;
 &nbsp;
@@ -322,7 +334,7 @@ export default Navbar;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-26T14:56:21.597Z
+                at 2024-12-03T08:11:13.998Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

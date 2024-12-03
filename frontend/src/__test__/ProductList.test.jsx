@@ -51,23 +51,23 @@ describe("ProductList Component", () => {
       expect(screen.getByText(product.name)).toBeInTheDocument();
       expect(screen.getByText(product.description)).toBeInTheDocument();
       expect(
-        screen.getByText(`€${product.price.toFixed(2)}`)
+        screen.getByText(`${product.price.toFixed(2)}€`)
       ).toBeInTheDocument();
     });
 
     // Verificar que los botones "Añadir al carrito" están presentes
-    const addToCartButtons = screen.getAllByText("Añadir al carrito");
+    const addToCartButtons = screen.getAllByText("Add to cart");
     expect(addToCartButtons).toHaveLength(mockProducts.length);
   });
 
-  it("debería llamar a 'dispatch' con la acción 'ADD_ITEM' al hacer clic en 'Añadir al carrito'", () => {
+  it("debería llamar a 'dispatch' con la acción 'ADD_ITEM' al hacer clic en 'Add to cart'", () => {
     render(
       <Router>
         <ProductList products={mockProducts} />
       </Router>
     );
 
-    const addToCartButton = screen.getAllByText("Añadir al carrito")[0];
+    const addToCartButton = screen.getAllByText("Add to cart")[0];
     fireEvent.click(addToCartButton);
 
     expect(mockDispatch).toHaveBeenCalledWith({

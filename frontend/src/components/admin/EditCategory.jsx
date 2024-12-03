@@ -25,7 +25,7 @@ const EditCategory = () => {
             setName(response.category.name); // ESTABLECE EL NOMBRE DE LA CATEGORÍA EN EL ESTADO
         } catch (error) {
             // MUESTRA UN MENSAJE DE ERROR SI FALLA LA PETICIÓN
-            setMessage(error.response?.data?.message || error.message || "Error al cargar la categoría");
+            setMessage(error.response?.data?.message || error.message || "Error loading the category.");
             setTimeout(() => {
                 setMessage(''); // LIMPIA EL MENSAJE DE ERROR DESPUÉS DE 3 SEGUNDOS
             }, 3000);
@@ -46,7 +46,7 @@ const EditCategory = () => {
             }
         } catch (error) {
             // MUESTRA UN MENSAJE DE ERROR SI FALLA LA ACTUALIZACIÓN
-            setMessage(error.response?.data?.message || error.message || "Error al actualizar la categoría");
+            setMessage(error.response?.data?.message || error.message || "Error updating the category.");
         }
     };
 
@@ -57,16 +57,16 @@ const EditCategory = () => {
             {message && <p className="message">{message}</p>}
             {/* FORMULARIO PARA EDITAR LA CATEGORÍA */}
             <form onSubmit={handleSubmit} className="category-form">
-                <h2>Editar Categoría</h2>
+                <h2>Edit Category</h2>
                 {/* CAMPO DE TEXTO PARA EDITAR EL NOMBRE DE LA CATEGORÍA */}
                 <input 
                     type="text"
-                    placeholder="Nombre Categoría"
+                    placeholder="Category Name"
                     value={name} // ESTADO name
                     onChange={(e) => setName(e.target.value)} // ACTUALIZA EL ESTADO CUANDO EL USUARIO ESCRIBE
                 />
                 {/* BOTÓN PARA ENVIAR EL FORMULARIO */}
-                <button type="submit">Actualizar</button>
+                <button type="submit">Update</button>
             </form>
         </div>
     );

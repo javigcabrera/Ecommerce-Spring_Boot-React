@@ -39,10 +39,10 @@ describe('RegisterPage', () => {
 
     // Verificar que los campos de entrada y el botón de registro se muestran
     expect(screen.getByLabelText(/Email:/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/Nombre:/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/Número Teléfono:/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Name:/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Phone Number:/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Password:/i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Registrar/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Sign Up/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /Login/i })).toBeInTheDocument(); // Cambié el método para verificar el enlace
   });
 
@@ -57,16 +57,16 @@ describe('RegisterPage', () => {
 
     // Llenar los campos del formulario
     fireEvent.change(screen.getByLabelText(/Email:/i), { target: { value: 'usuario@prueba.com' } });
-    fireEvent.change(screen.getByLabelText(/Nombre:/i), { target: { value: 'Usuario de prueba' } });
-    fireEvent.change(screen.getByLabelText(/Número Teléfono:/i), { target: { value: '123456789' } });
+    fireEvent.change(screen.getByLabelText(/Name:/i), { target: { value: 'Usuario de prueba' } });
+    fireEvent.change(screen.getByLabelText(/Phone Number:/i), { target: { value: '123456789' } });
     fireEvent.change(screen.getByLabelText(/Password:/i), { target: { value: 'password123' } });
 
     // Hacer clic en el botón de registro
-    fireEvent.click(screen.getByRole('button', { name: /Registrar/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Sign Up/i }));
 
     // Esperar a que se muestre el mensaje de éxito
     await waitFor(() => {
-      expect(screen.getByText('Usuario registrado con éxito')).toBeInTheDocument();
+      expect(screen.getByText('User registered successfully.')).toBeInTheDocument();
     });
 
     // Simular la redirección después de 4 segundos
@@ -86,12 +86,12 @@ describe('RegisterPage', () => {
 
     // Llenar los campos del formulario
     fireEvent.change(screen.getByLabelText(/Email:/i), { target: { value: 'usuario@prueba.com' } });
-    fireEvent.change(screen.getByLabelText(/Nombre:/i), { target: { value: 'Usuario de prueba' } });
-    fireEvent.change(screen.getByLabelText(/Número Teléfono:/i), { target: { value: '123456789' } });
+    fireEvent.change(screen.getByLabelText(/Name:/i), { target: { value: 'Usuario de prueba' } });
+    fireEvent.change(screen.getByLabelText(/Phone Number:/i), { target: { value: '123456789' } });
     fireEvent.change(screen.getByLabelText(/Password:/i), { target: { value: 'password123' } });
 
     // Hacer clic en el botón de registro
-    fireEvent.click(screen.getByRole('button', { name: /Registrar/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Sign Up/i }));
 
     // Esperar a que se muestre el mensaje de error
     await waitFor(() => {
@@ -102,7 +102,7 @@ describe('RegisterPage', () => {
   it('debería mostrar un mensaje personalizado si el email ya está registrado', async () => {
     ApiService.registerUser.mockRejectedValueOnce({
       response: {
-        data: { message: 'Duplicate entry: El correo ya existe' }
+        data: { message: 'Duplicate entry: The email already exists, please try another one.' }
       }
     });
 
@@ -114,16 +114,16 @@ describe('RegisterPage', () => {
 
     // Llenar los campos del formulario
     fireEvent.change(screen.getByLabelText(/Email:/i), { target: { value: 'usuario@prueba.com' } });
-    fireEvent.change(screen.getByLabelText(/Nombre:/i), { target: { value: 'Usuario de prueba' } });
-    fireEvent.change(screen.getByLabelText(/Número Teléfono:/i), { target: { value: '123456789' } });
+    fireEvent.change(screen.getByLabelText(/Name:/i), { target: { value: 'Usuario de prueba' } });
+    fireEvent.change(screen.getByLabelText(/Phone Number:/i), { target: { value: '123456789' } });
     fireEvent.change(screen.getByLabelText(/Password:/i), { target: { value: 'password123' } });
 
     // Hacer clic en el botón de registro
-    fireEvent.click(screen.getByRole('button', { name: /Registrar/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Sign Up/i }));
 
     // Esperar a que se muestre el mensaje de error personalizado
     await waitFor(() => {
-      expect(screen.getByText('El correo ya existe, intenta con otro.')).toBeInTheDocument();
+      expect(screen.getByText('The email already exists, please try another one.')).toBeInTheDocument();
     });
   }, 10000); // Incrementar el tiempo de espera total de la prueba a 10 segundos
 });

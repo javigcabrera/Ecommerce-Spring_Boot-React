@@ -59,10 +59,10 @@ describe("EditCategory Component", () => {
       </Router>
     );
 
-    const input = await waitFor(() => getByPlaceholderText("Nombre Categoría"));
+    const input = await waitFor(() => getByPlaceholderText("Category Name"));
     fireEvent.change(input, { target: { value: "Categoría Inválida" } });
 
-    const submitButton = getByText("Actualizar");
+    const submitButton = getByText("Update");
 
     await act(async () => {
       fireEvent.click(submitButton);
@@ -86,10 +86,10 @@ describe("EditCategory Component", () => {
       </Router>
     );
 
-    const input = await waitFor(() => getByPlaceholderText("Nombre Categoría"));
+    const input = await waitFor(() => getByPlaceholderText("Category Name"));
     fireEvent.change(input, { target: { value: "Categoría Inválida" } });
 
-    const submitButton = getByText("Actualizar");
+    const submitButton = getByText("Update");
 
     await act(async () => {
       fireEvent.click(submitButton);

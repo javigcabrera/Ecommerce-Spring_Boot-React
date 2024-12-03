@@ -78,7 +78,7 @@ class UserServiceImplementationTest {
 
         // Assert
         assertEquals(200, response.getStatus());
-        assertEquals("Usuario añadido con éxito", response.getMessage());
+        assertEquals("User added successfully.", response.getMessage());
         assertNotNull(response.getUser());
 
         verify(userRepository, times(1)).save(any(User.class));
@@ -103,7 +103,7 @@ class UserServiceImplementationTest {
 
         // Assert
         assertEquals(200, response.getStatus());
-        assertEquals("Usuario añadido con éxito", response.getMessage());
+        assertEquals("User added successfully.", response.getMessage());
         assertNotNull(response.getUser());
 
         verify(userRepository, times(1)).save(any(User.class));
@@ -126,7 +126,7 @@ class UserServiceImplementationTest {
 
         // Assert
         assertEquals(200, response.getStatus());
-        assertEquals("Login con exito", response.getMessage());
+        assertEquals("Login successful", response.getMessage());
         assertEquals("mockedToken", response.getToken());
 
         verify(userRepository, times(1)).findByEmail(loginRequest.getEmail());
@@ -144,7 +144,7 @@ class UserServiceImplementationTest {
 
         // Act & Assert
         NotFoundException exception = assertThrows(NotFoundException.class, () -> userService.loginUser(loginRequest));
-        assertEquals("El email no se ha encontrado", exception.getMessage());
+        assertEquals("The email was not found.", exception.getMessage());
 
         verify(userRepository, times(1)).findByEmail(loginRequest.getEmail());
     }
@@ -161,7 +161,7 @@ class UserServiceImplementationTest {
 
         // Act & Assert
         InvalidCredentialsException exception = assertThrows(InvalidCredentialsException.class, () -> userService.loginUser(loginRequest));
-        assertEquals("La contraseña es incorrecta", exception.getMessage());
+        assertEquals("The password is incorrect.", exception.getMessage());
 
         verify(userRepository, times(1)).findByEmail(loginRequest.getEmail());
         verify(passwordEncoder, times(1)).matches(loginRequest.getPassword(), mockUser.getPassword());
@@ -194,7 +194,7 @@ class UserServiceImplementationTest {
 
         // Assert
         assertEquals(500, response.getStatus());
-        assertTrue(response.getMessage().contains("Error al obtener la lista de usuarios"));
+        assertTrue(response.getMessage().contains("Error retrieving the user list: "));
 
         verify(userRepository, times(1)).findAll();
     }
@@ -225,7 +225,7 @@ class UserServiceImplementationTest {
 
         // Act & Assert
         UsernameNotFoundException exception = assertThrows(UsernameNotFoundException.class, userService::getLoginUser);
-        assertEquals("No se ha encontrado el usuario", exception.getMessage());
+        assertEquals("The user was not found.", exception.getMessage());
 
         verify(userRepository, times(1)).findByEmail("nonexistent@example.com");
     }

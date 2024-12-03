@@ -36,7 +36,7 @@ const Home = () => {
                     const response = await ApiService.searchProducts(searchItem);
                     allProducts = response.productList || [];
                     if (allProducts.length === 0) {
-                        setError("No existen productos que coincidan con la busqueda");
+                        setError("No products match the search.");
                     }
                 } else {
                     // OBTIENE TODOS LOS PRODUCTOS YA QUE NO EXISTE FILTRO DE BÚSQUEDA
@@ -49,7 +49,7 @@ const Home = () => {
                 // CORTA EL ARREGLO PARA MOSTRAR SOLAMENTE LOS PRODUCTOS DE LA PAGINA ACTUAL
                 setProducts(allProducts.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
             } catch (error) {
-                setError(error.response?.data?.message || error.message || 'No se puede obtener los productos');
+                setError(error.response?.data?.message || error.message || 'Unable to fetch the products.');
             }
         };
         // LLAMA A LA FUNCION PARA OBTENER LOS PRODUCTOS
@@ -72,7 +72,7 @@ const Home = () => {
                             />
                         </>
                     ) : (
-                        <p>No hay productos para mostrar</p>
+                        <p></p>
                     )}
                 </div>
             )}

@@ -31,7 +31,7 @@ public class CategoryServiceImplementation implements CategoryService {
         categoryRepository.save(category);
         return Response.builder()
                 .status(200)
-                .message("Categoria creada con exito")
+                .message("Category created successfully.")
                 .build();
     }
 
@@ -42,7 +42,7 @@ public class CategoryServiceImplementation implements CategoryService {
         categoryRepository.save(category);
         return Response.builder()
                 .status(200)
-                .message("Se ha actualizado con exito")
+                .message("Successfully updated.")
                 .build();
     }
 
@@ -74,7 +74,7 @@ public class CategoryServiceImplementation implements CategoryService {
         categoryRepository.delete(category);
         return Response.builder()
                 .status(200)
-                .message("Se ha eliminado con exito la categoria")
+                .message("The category has been successfully deleted.")
                 .build();
     }
 }

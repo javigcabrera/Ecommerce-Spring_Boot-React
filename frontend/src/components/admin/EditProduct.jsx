@@ -59,7 +59,7 @@ const EditProduct = () => {
             const response = await ApiService.updateProduct(productId, formData);
 
             if (response) {
-                setMessage('Producto actualizado correctamente'); // MUESTRA MENSAJE DE ÉXITO
+                setMessage('Product updated successfully.'); // MUESTRA MENSAJE DE ÉXITO
                 setTimeout(() => {
                     setMessage(''); // LIMPIA EL MENSAJE
                     navigate('/admin/products'); // REDIRIGE A LA LISTA DE PRODUCTOS
@@ -68,7 +68,7 @@ const EditProduct = () => {
         } catch (error) {
             // MUESTRA UN MENSAJE DE ERROR SI FALLA LA ACTUALIZACIÓN
             setMessage(
-                error.response?.data?.message || error.message || 'No se ha podido actualizar el producto'
+                error.response?.data?.message || error.message || 'The product could not be updated.'
             );
         }
     };
@@ -76,7 +76,7 @@ const EditProduct = () => {
     // RENDERIZA EL FORMULARIO PARA EDITAR EL PRODUCTO
     return (
         <form onSubmit={handleSubmit} className="product-form">
-            <h2>Editar Producto</h2>
+            <h2>Edit Product</h2>
             {/* MUESTRA MENSAJES SI EXISTEN */}
             {message && <div className="message">{message}</div>}
 
@@ -87,7 +87,7 @@ const EditProduct = () => {
 
             {/* SELECT PARA ELEGIR UNA CATEGORÍA */}
             <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)}>
-                <option value="">Selecciona categoría</option>
+                <option value="">Select category</option>
                 {categories.map((category) => (
                     <option value={category.id} key={category.id}>{category.name}</option>
                 ))}
@@ -96,14 +96,14 @@ const EditProduct = () => {
             {/* CAMPO PARA EL NOMBRE DEL PRODUCTO */}
             <input
                 type="text"
-                placeholder="Nombre Producto"
+                placeholder="Product Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
             />
 
             {/* CAMPO PARA LA DESCRIPCIÓN DEL PRODUCTO */}
             <textarea
-                placeholder="Descripción"
+                placeholder="Description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
             />
@@ -111,13 +111,13 @@ const EditProduct = () => {
             {/* CAMPO PARA EL PRECIO DEL PRODUCTO */}
             <input
                 type="number"
-                placeholder="Precio"
+                placeholder="Price"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
             />
 
             {/* BOTÓN PARA ENVIAR EL FORMULARIO */}
-            <button type="submit">Actualizar</button>
+            <button type="submit">Update</button>
         </form>
     );
 };

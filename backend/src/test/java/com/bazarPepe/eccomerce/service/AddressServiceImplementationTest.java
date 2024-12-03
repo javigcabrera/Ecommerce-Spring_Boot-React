@@ -74,7 +74,7 @@ class AddressServiceImplementationTest {
 
         // Validar respuesta
         assertEquals(200, response.getStatus());
-        assertEquals("Dirección actualizada correctamente", response.getMessage());
+        assertEquals("Address updated successfully.", response.getMessage());
     }
 
     @Test
@@ -102,7 +102,7 @@ class AddressServiceImplementationTest {
 
         // Validar respuesta
         assertEquals(200, response.getStatus());
-        assertEquals("Dirección actualizada correctamente", response.getMessage());
+        assertEquals("Address updated successfully.", response.getMessage());
     }
 
     @Test
@@ -130,7 +130,7 @@ class AddressServiceImplementationTest {
 
         // Validar respuesta
         assertEquals(200, response.getStatus());
-        assertEquals("Dirección actualizada correctamente", response.getMessage());
+        assertEquals("Address updated successfully.", response.getMessage());
     }
 
     @Test
@@ -156,6 +156,6 @@ class AddressServiceImplementationTest {
 
         // Validar respuesta
         assertEquals(200, response.getStatus());
-        assertEquals("Dirección actualizada correctamente", response.getMessage());
+        assertEquals("Address updated successfully.", response.getMessage());
     }
 }

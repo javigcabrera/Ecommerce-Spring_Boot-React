@@ -17,7 +17,7 @@ public class Category {
     private Long id;
 
     @Column(unique = true)
-    @NotBlank(message = "El nombre de la categoría no puede estar vacío")
+    @NotBlank(message = "The category name cannot be empty.")
     private String name;
 
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

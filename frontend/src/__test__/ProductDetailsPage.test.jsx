@@ -53,18 +53,18 @@ describe('ProductDetailsPage', () => {
         );
 
         // Verificar que se muestra el mensaje de carga mientras espera la respuesta
-        expect(screen.getByText('Cargando detalles del producto ....')).toBeInTheDocument();
+        expect(screen.getByText('Loading product details...')).toBeInTheDocument(); // Cambiado a inglés
 
         // Esperar hasta que el producto cargue y comprobar que se muestra en el DOM
         await waitFor(() => {
             expect(screen.getByText('Producto de prueba')).toBeInTheDocument();
             expect(screen.getByText('Descripción del producto de prueba')).toBeInTheDocument();
-            expect(screen.getByText('€100.00')).toBeInTheDocument();
-            expect(screen.getByRole('button', { name: /Añadir al carrito/i })).toBeInTheDocument();
+            expect(screen.getByText('100.00€')).toBeInTheDocument();
+            expect(screen.getByRole('button', { name: /Add to Cart/i })).toBeInTheDocument(); // Cambiado a inglés
         });
     });
 
-    it('debería agregar el producto al carrito cuando se hace clic en "Añadir al carrito"', async () => {
+    it('debería agregar el producto al carrito cuando se hace clic en "Add to Cart"', async () => {
         const mockDispatch = vi.fn();
 
         // Configuración del mock de `getProductById`
@@ -96,7 +96,7 @@ describe('ProductDetailsPage', () => {
             expect(screen.getByText('Producto de prueba')).toBeInTheDocument();
         });
 
-        fireEvent.click(screen.getByRole('button', { name: /Añadir al carrito/i }));
+        fireEvent.click(screen.getByRole('button', { name: /Add to Cart/i })); // Cambiado a inglés
 
         expect(mockDispatch).toHaveBeenCalledWith({
             type: 'ADD_ITEM',
@@ -143,8 +143,8 @@ describe('ProductDetailsPage', () => {
             expect(screen.getByText('1')).toBeInTheDocument();
         });
 
-        fireEvent.click(screen.getByRole('button', { name: /\+/i }));
-
+        fireEvent.click(screen.getByRole('button', { name: /\+/i })); // Cambiado a "+"
+        
         expect(mockDispatch).toHaveBeenCalledWith({
             type: 'INCREMENT_ITEM',
             payload: {
@@ -190,7 +190,7 @@ describe('ProductDetailsPage', () => {
             expect(screen.getByText('1')).toBeInTheDocument();
         });
 
-        fireEvent.click(screen.getByRole('button', { name: /-/i }));
+        fireEvent.click(screen.getByRole('button', { name: /-/i })); // Cambiado a "-"
 
         expect(mockDispatch).toHaveBeenCalledWith({
             type: 'REMOVE_ITEM',

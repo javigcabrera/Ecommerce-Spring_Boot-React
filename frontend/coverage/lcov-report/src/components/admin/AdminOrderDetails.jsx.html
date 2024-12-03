@@ -353,12 +353,12 @@ const AdminOrderDetails = () =&gt; {
     const handleSubmitStatusChange = async (orderItemId) =&gt; {
         try {
             await ApiService.updateOrderItemStatus(orderItemId, selectedStatus[orderItemId]); // ENVÍA LA ACTUALIZACIÓN A LA API
-            setMessage('El estado del producto del pedido se ha actualizado correctamente'); // MUESTRA MENSAJE DE ÉXITO
+            setMessage('The status of the product in the order has been successfully updated.'); // MUESTRA MENSAJE DE ÉXITO
             setTimeout(() =&gt; {
 <span class="cstat-no" title="statement not covered" >                setMessage(''); // LIMPIA EL MENSAJE DESPUÉS DE 3 SEGUNDOS</span>
             }, 3000);
 <span class="branch-0 cbranch-no" title="branch not covered" >        } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >            setMessage(error.response?.data?.message || error.message || 'No ha sido posible actualizar el estado'); // MUESTRA MENSAJE DE ERROR</span>
+<span class="cstat-no" title="statement not covered" >            setMessage(error.response?.data?.message || error.message || 'It was not possible to update the status.'); // MUESTRA MENSAJE DE ERROR</span>
 <span class="cstat-no" title="statement not covered" >        }</span>
     };
 &nbsp;
@@ -367,56 +367,56 @@ const AdminOrderDetails = () =&gt; {
         &lt;div className="order-details-page"&gt;
             {/* MENSAJES INFORMATIVOS */}
             {message &amp;&amp; &lt;div className="message"&gt;{message}&lt;/div&gt;}
-            &lt;h2&gt;Detalles del Pedido&lt;/h2&gt;
+            &lt;h2&gt;Order Details&lt;/h2&gt;
             {orderItems.length ? (
                 // RENDERIZA CADA ITEM DEL PEDIDO
                 orderItems.map((orderItem) =&gt; (
                     &lt;div key={orderItem.id} className="order-item-details"&gt;
                         {/* INFORMACIÓN DEL PEDIDO */}
                         &lt;div className="info"&gt;
-                            &lt;h3&gt;Información del Pedido&lt;/h3&gt;
-                            &lt;p&gt;&lt;strong&gt;ID Producto Pedido:&lt;/strong&gt;{orderItem.id}&lt;/p&gt;
-                            &lt;p&gt;&lt;strong&gt;Cantidad:&lt;/strong&gt;{orderItem.quantity}&lt;/p&gt;
-                            &lt;p&gt;&lt;strong&gt;Precio Total:&lt;/strong&gt;{orderItem.price}&lt;/p&gt;
-                            &lt;p&gt;&lt;strong&gt;Estado Pedido:&lt;/strong&gt;{orderItem.status}&lt;/p&gt;
-                            &lt;p&gt;&lt;strong&gt;Fecha Pedido:&lt;/strong&gt;{new Date(orderItem.createdAt).toLocaleDateString()}&lt;/p&gt;
+                            &lt;h3&gt;Order Information&lt;/h3&gt;
+                            &lt;p&gt;&lt;strong&gt;Order Product ID:&lt;/strong&gt;{orderItem.id}&lt;/p&gt;
+                            &lt;p&gt;&lt;strong&gt;Quantity:&lt;/strong&gt;{orderItem.quantity}&lt;/p&gt;
+                            &lt;p&gt;&lt;strong&gt;Total Price:&lt;/strong&gt;{orderItem.price}&lt;/p&gt;
+                            &lt;p&gt;&lt;strong&gt;Order Status:&lt;/strong&gt;{orderItem.status}&lt;/p&gt;
+                            &lt;p&gt;&lt;strong&gt;Order Date:&lt;/strong&gt;{new Date(orderItem.createdAt).toLocaleDateString()}&lt;/p&gt;
                         &lt;/div&gt;
 &nbsp;
                         {/* INFORMACIÓN DEL COMPRADOR */}
                         &lt;div className="info"&gt;
-                            &lt;h3&gt;Información del Comprador&lt;/h3&gt;
-                            &lt;p&gt;&lt;strong&gt;Nombre:&lt;/strong&gt;{orderItem.user.name}&lt;/p&gt;
+                            &lt;h3&gt;Buyer Information&lt;/h3&gt;
+                            &lt;p&gt;&lt;strong&gt;Name:&lt;/strong&gt;{orderItem.user.name}&lt;/p&gt;
                             &lt;p&gt;&lt;strong&gt;Email:&lt;/strong&gt;{orderItem.user.email}&lt;/p&gt;
-                            &lt;p&gt;&lt;strong&gt;Teléfono:&lt;/strong&gt;{orderItem.user.phoneNumber}&lt;/p&gt;
+                            &lt;p&gt;&lt;strong&gt;Phone Number:&lt;/strong&gt;{orderItem.user.phoneNumber}&lt;/p&gt;
                             &lt;p&gt;&lt;strong&gt;Rol:&lt;/strong&gt;{orderItem.user.role}&lt;/p&gt;
 &nbsp;
-                            {/* DIRECCIÓN DEL COMPRADOR */}
+                            {/* DIRECCIÓN ENVIO DEL COMPRADOR */}
                             &lt;div className="info"&gt;
-                                &lt;h3&gt;Dirección de envío&lt;/h3&gt;
-                                &lt;p&gt;&lt;strong&gt;País:&lt;/strong&gt;{orderItem.user.address?.country}&lt;/p&gt;
-                                &lt;p&gt;&lt;strong&gt;Provincia:&lt;/strong&gt;{orderItem.user.address?.state}&lt;/p&gt;
-                                &lt;p&gt;&lt;strong&gt;Ciudad:&lt;/strong&gt;{orderItem.user.address?.city}&lt;/p&gt;
-                                &lt;p&gt;&lt;strong&gt;Calle:&lt;/strong&gt;{orderItem.user.address?.street}&lt;/p&gt;
-                                &lt;p&gt;&lt;strong&gt;Código Postal:&lt;/strong&gt;{orderItem.user.address?.zipcode}&lt;/p&gt;
+                                &lt;h3&gt;Shipping Address&lt;/h3&gt;
+                                &lt;p&gt;&lt;strong&gt;Country:&lt;/strong&gt;{orderItem.user.address?.country}&lt;/p&gt;
+                                &lt;p&gt;&lt;strong&gt;State:&lt;/strong&gt;{orderItem.user.address?.state}&lt;/p&gt;
+                                &lt;p&gt;&lt;strong&gt;City:&lt;/strong&gt;{orderItem.user.address?.city}&lt;/p&gt;
+                                &lt;p&gt;&lt;strong&gt;Street:&lt;/strong&gt;{orderItem.user.address?.street}&lt;/p&gt;
+                                &lt;p&gt;&lt;strong&gt;Zip Code:&lt;/strong&gt;{orderItem.user.address?.zipcode}&lt;/p&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
 &nbsp;
                         {/* INFORMACIÓN DEL PRODUCTO */}
                         &lt;div&gt;
-                            &lt;h2&gt;Información del Producto&lt;/h2&gt;
+                            &lt;h2&gt;Product Information&lt;/h2&gt;
                             &lt;img
                                 src={`data:${orderItem.product.<span class="branch-0 cbranch-no" title="branch not covered" >imageType || "image/jpeg"}</span>;base64,${orderItem.product.image}`}
                                 alt={orderItem.product.name}
                                 style={{ width: '150px', height: '150px' }}
                             /&gt;
-                            &lt;p&gt;&lt;strong&gt;Nombre:&lt;/strong&gt;{orderItem.product.name}&lt;/p&gt;
-                            &lt;p&gt;&lt;strong&gt;Descripción:&lt;/strong&gt;{orderItem.product.description}&lt;/p&gt;
-                            &lt;p&gt;&lt;strong&gt;Precio:&lt;/strong&gt;{orderItem.product.price}&lt;/p&gt;
+                            &lt;p&gt;&lt;strong&gt;Name:&lt;/strong&gt;{orderItem.product.name}&lt;/p&gt;
+                            &lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;{orderItem.product.description}&lt;/p&gt;
+                            &lt;p&gt;&lt;strong&gt;Price:&lt;/strong&gt;{orderItem.product.price}&lt;/p&gt;
                         &lt;/div&gt;
 &nbsp;
                         {/* CAMBIO DE ESTADO DEL PEDIDO */}
                         &lt;div className="status-change"&gt;
-                            &lt;h4&gt;Cambiar Estado&lt;/h4&gt;
+                            &lt;h4&gt;Change Status&lt;/h4&gt;
                             &lt;select
                                 className="status-option"
                                 value={selectedStatus[orderItem.id] || orderItem.status}
@@ -429,13 +429,13 @@ const AdminOrderDetails = () =&gt; {
                             &lt;button
                                 className="update-status-button"
                                 onClick={() =&gt; handleSubmitStatusChange(orderItem.id)}&gt;
-                                Actualizar Estado
+                                Update Status
                             &lt;/button&gt;
                         &lt;/div&gt;
                     &lt;/div&gt;
                 ))
             ) : (
-                &lt;p&gt;Cargando detalles del pedido...&lt;/p&gt; // MENSAJE MIENTRAS SE CARGAN LOS DETALLES
+                &lt;p&gt;Loading order details...&lt;/p&gt; // MENSAJE MIENTRAS SE CARGAN LOS DETALLES
             )}
         &lt;/div&gt;
     );
@@ -448,7 +448,7 @@ export default AdminOrderDetails;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-26T14:56:21.597Z
+                at 2024-12-03T08:11:13.998Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

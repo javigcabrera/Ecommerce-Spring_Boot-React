@@ -10,7 +10,7 @@ export default defineConfig({
         setupFiles: './src/__test__/setupTest.js', // Ruta al archivo de configuración
         coverage: {
             provider: "v8",
-            reporter: ["text", "lcov"],
+            reporter: ["text-summary", "lcov"],
             reportsDirectory: "./coverage",
         },
     },

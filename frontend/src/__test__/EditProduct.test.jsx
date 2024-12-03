@@ -54,15 +54,13 @@ describe("EditProduct Component", () => {
       </Router>
     );
 
+    // Espera a que se rendericen los datos de la categoría
     await waitFor(() => getByRole("combobox"));
 
-    expect(getByPlaceholderText("Nombre Producto").value).toBe(
-      "Producto Existente"
-    );
-    expect(getByPlaceholderText("Descripción").value).toBe(
-      "Descripción existente"
-    );
-    expect(getByPlaceholderText("Precio").value).toBe("100");
+    // Asegura que los valores precargados se muestren correctamente
+    expect(getByPlaceholderText("Product Name").value).toBe("Producto Existente");
+    expect(getByPlaceholderText("Description").value).toBe("Descripción existente");
+    expect(getByPlaceholderText("Price").value).toBe("100");
     expect(getByDisplayValue("Categoría 1")).toBeInTheDocument();
   });
 
@@ -88,23 +86,21 @@ describe("EditProduct Component", () => {
     );
 
     const nameInput = await waitFor(() =>
-      getByPlaceholderText("Nombre Producto")
+      getByPlaceholderText("Product Name")
     );
     fireEvent.change(nameInput, { target: { value: "Nuevo Nombre" } });
     expect(nameInput.value).toBe("Nuevo Nombre");
 
-    const descriptionInput = getByPlaceholderText("Descripción");
+    const descriptionInput = getByPlaceholderText("Description");
     fireEvent.change(descriptionInput, {
       target: { value: "Nueva descripción" },
     });
     expect(descriptionInput.value).toBe("Nueva descripción");
 
-    const priceInput = getByPlaceholderText("Precio");
+    const priceInput = getByPlaceholderText("Price");
     fireEvent.change(priceInput, { target: { value: "200" } });
     expect(priceInput.value).toBe("200");
   });
-
-  
 
   it("debería mostrar un mensaje de error si falla la actualización", async () => {
     ApiService.getAllCategory.mockResolvedValueOnce({
@@ -133,10 +129,10 @@ describe("EditProduct Component", () => {
 
     await waitFor(() => getByRole("combobox"));
 
-    const nameInput = getByPlaceholderText("Nombre Producto");
+    const nameInput = getByPlaceholderText("Product Name");
     fireEvent.change(nameInput, { target: { value: "Nuevo Producto" } });
 
-    const submitButton = getByText("Actualizar");
+    const submitButton = getByText("Update");
     await act(async () => {
       fireEvent.click(submitButton);
     });
@@ -144,6 +140,4 @@ describe("EditProduct Component", () => {
     const errorMessage = await findByText("Error al actualizar el producto");
     expect(errorMessage).toBeInTheDocument();
   });
-
-  
 });

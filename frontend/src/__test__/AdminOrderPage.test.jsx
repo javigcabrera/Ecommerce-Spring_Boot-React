@@ -86,7 +86,7 @@ describe("AdminOrderPage Component", () => {
       );
     });
 
-    const select = screen.getByLabelText("Filtrar por Estado");
+    const select = screen.getByLabelText("Filter by Status"); // Actualizamos el label de búsqueda para que coincida con el texto real
     act(() => {
       fireEvent.change(select, { target: { value: "PENDING" } });
     });
@@ -97,7 +97,7 @@ describe("AdminOrderPage Component", () => {
     expect(screen.queryByText("Jane Smith")).not.toBeInTheDocument();
   });
 
-  it("debería navegar a la página de detalles del pedido al hacer clic en 'Detalles'", async () => {
+  it("debería navegar a la página de detalles del pedido al hacer clic en 'Details'", async () => {
     await act(async () => {
       render(
         <Router>
@@ -106,13 +106,11 @@ describe("AdminOrderPage Component", () => {
       );
     });
 
-    const detailsButton = await waitFor(() => screen.getAllByText("Detalles"));
+    const detailsButton = await waitFor(() => screen.getAllByText("Details")); // Asegúrate de que el texto coincide
     act(() => {
       fireEvent.click(detailsButton[0]);
     });
 
     expect(mockNavigate).toHaveBeenCalledWith("/admin/order-details/1");
   });
-
-  
 });

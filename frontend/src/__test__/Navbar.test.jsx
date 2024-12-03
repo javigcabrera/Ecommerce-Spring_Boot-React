@@ -4,6 +4,7 @@ import { vi } from "vitest";
 import { BrowserRouter as Router, useNavigate } from "react-router-dom";
 import Navbar from "../components/common/Navbar";
 import ApiService from "../service/ApiService";
+import { useCart } from "../components/context/CartContext";
 
 // Mock de ApiService
 vi.mock("../service/ApiService", () => ({
@@ -23,13 +24,29 @@ vi.mock("react-router-dom", async (importOriginal) => {
   };
 });
 
+// Mock de useCart
+vi.mock("../components/context/CartContext", () => ({
+  useCart: vi.fn(), // Mock del hook
+}));
+
 describe("Navbar Component", () => {
   let mockNavigate;
+  let mockDispatch;
 
   beforeEach(() => {
+    // Limpiar mocks y redefinirlos
     vi.clearAllMocks();
-    mockNavigate = vi.fn();
+
+    mockNavigate = vi.fn(); // Simular navegación
+    mockDispatch = vi.fn(); // Simular dispatch
+
     useNavigate.mockReturnValue(mockNavigate);
+
+    // Redefinir el comportamiento de useCart antes de cada prueba
+    useCart.mockReturnValue({
+      cart: [], // Simula un carrito vacío
+      dispatch: mockDispatch, // Mock de dispatch
+    });
   });
 
   it("debería manejar el envío del formulario de búsqueda correctamente", () => {
@@ -42,7 +59,7 @@ describe("Navbar Component", () => {
       </Router>
     );
 
-    const searchInput = screen.getByPlaceholderText("Busca productos");
+    const searchInput = screen.getByPlaceholderText("Search products"); // Cambiado a inglés
     const searchButton = screen.getByText("Search");
 
     fireEvent.change(searchInput, { target: { value: "Laptop" } });
@@ -51,7 +68,7 @@ describe("Navbar Component", () => {
     expect(mockNavigate).toHaveBeenCalledWith("/?search=Laptop");
   });
 
-  it("debería llamar a ApiService.logout y navegar a /login al cerrar sesión", () => {
+  it("debería llamar a ApiService.logout, limpiar el carrito y navegar a /login al cerrar sesión", () => {
     vi.useFakeTimers(); // Usar temporizadores falsos para controlar el setTimeout
 
     ApiService.isAuthenticated.mockReturnValue(true);
@@ -71,13 +88,17 @@ describe("Navbar Component", () => {
     fireEvent.click(logoutLink);
 
     expect(window.confirm).toHaveBeenCalledWith(
-      "Estas seguro de que quieres cerrar sesion?"
+      "Are you sure you want to log out?" // Mensaje en inglés
     );
     expect(ApiService.logout).toHaveBeenCalled();
 
     // Adelantar el temporizador para ejecutar el setTimeout
     vi.advanceTimersByTime(500);
 
+    // Verifica que se haya llamado a dispatch con la acción CLEAR_CART
+    expect(mockDispatch).toHaveBeenCalledWith({ type: "CLEAR_CART" });
+
+    // Verifica que navegue a /login después del timeout
     expect(mockNavigate).toHaveBeenCalledWith("/login");
 
     vi.useRealTimers(); // Restaurar temporizadores reales después de la prueba
@@ -109,7 +130,7 @@ describe("Navbar Component", () => {
       </Router>
     );
 
-    expect(screen.queryByText("Mi Perfil")).not.toBeInTheDocument();
+    expect(screen.queryByText("My Profile")).not.toBeInTheDocument();
     expect(screen.queryByText("Admin")).not.toBeInTheDocument();
     expect(screen.queryByText("Logout")).not.toBeInTheDocument();
   });

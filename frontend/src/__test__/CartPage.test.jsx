@@ -59,7 +59,7 @@ describe('CartPage', () => {
             </MemoryRouter>
         );
 
-        expect(screen.getByRole('heading', { name: /Carrito/i })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: /Cart/i })).toBeInTheDocument();
         expect(screen.getByText('Producto 1')).toBeInTheDocument();
         expect(screen.getByText('Producto 2')).toBeInTheDocument();
     });
@@ -109,7 +109,7 @@ describe('CartPage', () => {
         fireEvent.click(screen.getByRole('button', { name: /Checkout/i }));
 
         await waitFor(() => {
-            expect(screen.getByText('Tienes que hacer login antes de hacer el pedido')).toBeInTheDocument();
+            expect(screen.getByText('You need to log in before placing the order.')).toBeInTheDocument();
         });
     });
 

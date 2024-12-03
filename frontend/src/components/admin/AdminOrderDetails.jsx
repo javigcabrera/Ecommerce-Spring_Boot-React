@@ -36,12 +36,12 @@ const AdminOrderDetails = () => {
     const handleSubmitStatusChange = async (orderItemId) => {
         try {
             await ApiService.updateOrderItemStatus(orderItemId, selectedStatus[orderItemId]); // ENVÍA LA ACTUALIZACIÓN A LA API
-            setMessage('El estado del producto del pedido se ha actualizado correctamente'); // MUESTRA MENSAJE DE ÉXITO
+            setMessage('The status of the product in the order has been successfully updated.'); // MUESTRA MENSAJE DE ÉXITO
             setTimeout(() => {
                 setMessage(''); // LIMPIA EL MENSAJE DESPUÉS DE 3 SEGUNDOS
             }, 3000);
         } catch (error) {
-            setMessage(error.response?.data?.message || error.message || 'No ha sido posible actualizar el estado'); // MUESTRA MENSAJE DE ERROR
+            setMessage(error.response?.data?.message || error.message || 'It was not possible to update the status.'); // MUESTRA MENSAJE DE ERROR
         }
     };
 
@@ -50,56 +50,56 @@ const AdminOrderDetails = () => {
         <div className="order-details-page">
             {/* MENSAJES INFORMATIVOS */}
             {message && <div className="message">{message}</div>}
-            <h2>Detalles del Pedido</h2>
+            <h2>Order Details</h2>
             {orderItems.length ? (
                 // RENDERIZA CADA ITEM DEL PEDIDO
                 orderItems.map((orderItem) => (
                     <div key={orderItem.id} className="order-item-details">
                         {/* INFORMACIÓN DEL PEDIDO */}
                         <div className="info">
-                            <h3>Información del Pedido</h3>
-                            <p><strong>ID Producto Pedido:</strong>{orderItem.id}</p>
-                            <p><strong>Cantidad:</strong>{orderItem.quantity}</p>
-                            <p><strong>Precio Total:</strong>{orderItem.price}</p>
-                            <p><strong>Estado Pedido:</strong>{orderItem.status}</p>
-                            <p><strong>Fecha Pedido:</strong>{new Date(orderItem.createdAt).toLocaleDateString()}</p>
+                            <h3>Order Information</h3>
+                            <p><strong>Order Product ID:</strong>{orderItem.id}</p>
+                            <p><strong>Quantity:</strong>{orderItem.quantity}</p>
+                            <p><strong>Total Price:</strong>{orderItem.price}</p>
+                            <p><strong>Order Status:</strong>{orderItem.status}</p>
+                            <p><strong>Order Date:</strong>{new Date(orderItem.createdAt).toLocaleDateString()}</p>
                         </div>
 
                         {/* INFORMACIÓN DEL COMPRADOR */}
                         <div className="info">
-                            <h3>Información del Comprador</h3>
-                            <p><strong>Nombre:</strong>{orderItem.user.name}</p>
+                            <h3>Buyer Information</h3>
+                            <p><strong>Name:</strong>{orderItem.user.name}</p>
                             <p><strong>Email:</strong>{orderItem.user.email}</p>
-                            <p><strong>Teléfono:</strong>{orderItem.user.phoneNumber}</p>
+                            <p><strong>Phone Number:</strong>{orderItem.user.phoneNumber}</p>
                             <p><strong>Rol:</strong>{orderItem.user.role}</p>
 
-                            {/* DIRECCIÓN DEL COMPRADOR */}
+                            {/* DIRECCIÓN ENVIO DEL COMPRADOR */}
                             <div className="info">
-                                <h3>Dirección de envío</h3>
-                                <p><strong>País:</strong>{orderItem.user.address?.country}</p>
-                                <p><strong>Provincia:</strong>{orderItem.user.address?.state}</p>
-                                <p><strong>Ciudad:</strong>{orderItem.user.address?.city}</p>
-                                <p><strong>Calle:</strong>{orderItem.user.address?.street}</p>
-                                <p><strong>Código Postal:</strong>{orderItem.user.address?.zipcode}</p>
+                                <h3>Shipping Address</h3>
+                                <p><strong>Country:</strong>{orderItem.user.address?.country}</p>
+                                <p><strong>State:</strong>{orderItem.user.address?.state}</p>
+                                <p><strong>City:</strong>{orderItem.user.address?.city}</p>
+                                <p><strong>Street:</strong>{orderItem.user.address?.street}</p>
+                                <p><strong>Zip Code:</strong>{orderItem.user.address?.zipcode}</p>
                             </div>
                         </div>
 
                         {/* INFORMACIÓN DEL PRODUCTO */}
                         <div>
-                            <h2>Información del Producto</h2>
+                            <h2>Product Information</h2>
                             <img
                                 src={`data:${orderItem.product.imageType || "image/jpeg"};base64,${orderItem.product.image}`}
                                 alt={orderItem.product.name}
                                 style={{ width: '150px', height: '150px' }}
                             />
-                            <p><strong>Nombre:</strong>{orderItem.product.name}</p>
-                            <p><strong>Descripción:</strong>{orderItem.product.description}</p>
-                            <p><strong>Precio:</strong>{orderItem.product.price}</p>
+                            <p><strong>Name:</strong>{orderItem.product.name}</p>
+                            <p><strong>Description:</strong>{orderItem.product.description}</p>
+                            <p><strong>Price:</strong>{orderItem.product.price}</p>
                         </div>
 
                         {/* CAMBIO DE ESTADO DEL PEDIDO */}
                         <div className="status-change">
-                            <h4>Cambiar Estado</h4>
+                            <h4>Change Status</h4>
                             <select
                                 className="status-option"
                                 value={selectedStatus[orderItem.id] || orderItem.status}
@@ -112,13 +112,13 @@ const AdminOrderDetails = () => {
                             <button
                                 className="update-status-button"
                                 onClick={() => handleSubmitStatusChange(orderItem.id)}>
-                                Actualizar Estado
+                                Update Status
                             </button>
                         </div>
                     </div>
                 ))
             ) : (
-                <p>Cargando detalles del pedido...</p> // MENSAJE MIENTRAS SE CARGAN LOS DETALLES
+                <p>Loading order details...</p> // MENSAJE MIENTRAS SE CARGAN LOS DETALLES
             )}
         </div>
     );

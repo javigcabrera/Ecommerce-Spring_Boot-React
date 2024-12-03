@@ -28,7 +28,7 @@ public class ProductController {
             @RequestParam BigDecimal price
     ){
         if(categoryId==null||image.isEmpty()||name.isBlank()||description.isBlank()||price==null){
-            throw new InvalidCredentialsException("Todos los campos son requeridos");
+            throw new InvalidCredentialsException("All fields are required.");
         }
         return ResponseEntity.ok(productService.createProduct(categoryId,image,name,description,price));
     }

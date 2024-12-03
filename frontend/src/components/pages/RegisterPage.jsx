@@ -33,7 +33,7 @@ const RegisterPage = () => {
             // ENVÍA LOS DATOS DEL FORMULARIO A LA API PARA REGISTRAR UN NUEVO USUARIO
             const response = await ApiService.registerUser(formData);
             if (response.status === 200) {
-                setMessage("Usuario registrado con éxito");
+                setMessage("User registered successfully.");
                 // REDIRIGE A LA PÁGINA DE LOGIN DESPUÉS DE 4 SEGUNDOS
                 setTimeout(() => {
                     navigate("/login");
@@ -45,7 +45,7 @@ const RegisterPage = () => {
     
             // DETECTAMOS SI EL ERROR ES DE DUPLICADO Y LO PERSONALIZAMOS
             if (errorMessage.includes("Duplicate entry")) {
-                setMessage("El correo ya existe, intenta con otro.");
+                setMessage("The email already exists, please try another one.");
             } else {
                 setMessage(errorMessage); // MOSTRAMOS EL MENSAJE ORIGINAL SI NO ES DUPLICADO
             }
@@ -57,7 +57,7 @@ const RegisterPage = () => {
         <div className="register-container">
             <div className="register-content">
                 <div className="register-form">
-                    <h2>Registro</h2>
+                    <h2>Sign Up</h2>
                     {message && <p className="message">{message}</p>}
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="email">Email:</label>
@@ -69,7 +69,7 @@ const RegisterPage = () => {
                             onChange={handleChange}
                             required
                         />
-                        <label htmlFor="name">Nombre:</label>
+                        <label htmlFor="name">Name:</label>
                         <input
                             id="name"
                             type="text"
@@ -78,7 +78,7 @@ const RegisterPage = () => {
                             onChange={handleChange}
                             required
                         />
-                        <label htmlFor="phoneNumber">Número Teléfono:</label>
+                        <label htmlFor="phoneNumber">Phone Number:</label>
                         <input
                             id="phoneNumber"
                             type="text"
@@ -96,9 +96,9 @@ const RegisterPage = () => {
                             onChange={handleChange}
                             required
                         />
-                        <button type="submit">Registrar</button>
+                        <button type="submit">Sign Up</button>
                         <p className="register-link">
-                            ¿Ya tienes una cuenta? <a href="/login">Login</a>
+                        Do you already have an account? <a href="/login">Login</a>
                         </p>
                     </form>
                 </div>

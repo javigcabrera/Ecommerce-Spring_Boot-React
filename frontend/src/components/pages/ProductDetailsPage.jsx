@@ -48,7 +48,7 @@ const ProductDetailsPage = () => {
     }
 
     if (!product) {
-        return <p>Cargando detalles del producto ....</p>
+        return <p>Loading product details...</p>
     }
 
     const cartItem = cart.find(item => item.id === product.id);
@@ -60,7 +60,7 @@ const ProductDetailsPage = () => {
             <img src={imageUrl} alt={product?.name} />
             <h1>{product?.name}</h1>
             <p>{product?.description}</p>
-            <span>€{product.price.toFixed(2)}</span>
+            <span>{product.price.toFixed(2)}€</span>
             {cartItem ? (
                 <div className="quantity-controls">
                     <button onClick={decrementItem}>-</button>
@@ -68,7 +68,7 @@ const ProductDetailsPage = () => {
                     <button onClick={incrementItem}>+</button>
                 </div>
             ) : (
-                <button onClick={addToCart}>Añadir al carrito</button>
+                <button onClick={addToCart}>Add to Cart</button>
             )}
 
         </div>

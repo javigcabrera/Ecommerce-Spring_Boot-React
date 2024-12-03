@@ -30,7 +30,7 @@ const AddressPage=()=>{
                 setAddress(response.user.address);
             }
         } catch (error) {
-            setError(error.response?.data?.message||error.message||"No es posible cargar la informacion del usuario");
+            setError(error.response?.data?.message||error.message||"It is not possible to load the user information.");
         }
     };
 
@@ -48,18 +48,18 @@ const AddressPage=()=>{
             await ApiService.saveAndUpdateAddress(address);
             navigate("/profile");
         } catch (error) {
-            setError(error.response?.data?.message||error.message||"No se ha podido registrar la direccion");
+            setError(error.response?.data?.message||error.message||"The address could not be registered.");
         }
     }
 
     return(
         <div className="address-page">
-            <h2>{location.pathname==="/edit-address"?"Editar Direccion":"Añadir direccion"}</h2>
+            <h2>{location.pathname==="/edit-address"?"Edit Address":"Add Address"}</h2>
             {error&&<p className="error-message">{error}</p>}
 
             <form onSubmit={handSubmit}>
                 <label>
-                    Calle: 
+                    Street: 
                     <input 
                         type="text" 
                         name="street"
@@ -69,7 +69,7 @@ const AddressPage=()=>{
                     />
                 </label>
                 <label>
-                    Ciudad: 
+                    City: 
                     <input 
                         type="text" 
                         name="city"
@@ -79,7 +79,7 @@ const AddressPage=()=>{
                     />
                 </label>
                 <label>
-                    Provincia: 
+                    State: 
                     <input 
                         type="text" 
                         name="state"
@@ -89,7 +89,7 @@ const AddressPage=()=>{
                     />
                 </label>
                 <label>
-                    Codigo Postal:
+                    Zip Code:
                     <input 
                         type="text" 
                         name="zipCode"
@@ -99,7 +99,7 @@ const AddressPage=()=>{
                     />
                 </label>
                 <label>
-                    Pais:
+                    Country:
                     <input 
                         type="text" 
                         name="country"
@@ -108,7 +108,7 @@ const AddressPage=()=>{
                         required                          
                     />
                 </label>
-                <button type="submit">{location.pathname==="/edit-address"?"Editar Direccion":"Añadir direccion"}</button>
+                <button type="submit">{location.pathname==="/edit-address"?"Edit Address":"Add Address"}</button>
             </form>
         </div>
     )

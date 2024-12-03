@@ -45,7 +45,7 @@ describe('CategoryListPage', () => {
         );
 
         await waitFor(() => {
-            expect(screen.getByRole('heading', { name: /Categorias/i })).toBeInTheDocument();
+            expect(screen.getByRole('heading', { name: /Categories/i })).toBeInTheDocument();
             expect(screen.getByText('Categoría 1')).toBeInTheDocument();
             expect(screen.getByText('Categoría 2')).toBeInTheDocument();
         });

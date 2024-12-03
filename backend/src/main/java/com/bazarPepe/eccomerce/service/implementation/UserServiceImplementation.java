@@ -65,7 +65,7 @@ public class UserServiceImplementation implements UserService {
         // CREA UNA RESPUESTA EXITOSA CON UN MENSAJE Y LOS DATOS DEL USUARIO
         return Response.builder()
                 .status(200) // ESTABLECE EL ESTADO DE LA RESPUESTA COMO '200 OK'
-                .message("Usuario añadido con éxito") // MENSAJE DE ÉXITO
+                .message("User added successfully.") // MENSAJE DE ÉXITO
                 .user(userDto) // INCLUYE LOS DATOS DEL USUARIO EN LA RESPUESTA
                 .build(); // CONSTRUYE EL OBJETO 'Response'
     }
@@ -76,20 +76,20 @@ public class UserServiceImplementation implements UserService {
 
         //BUSCA EL USUARIO POR EMAIL, LANZA EXCEPCION SI NO LO ENCUENTRA
         User user=userRepository.findByEmail(loginRequest.getEmail())
-                .orElseThrow(()->new NotFoundException("El email no se ha encontrado"));
+                .orElseThrow(()->new NotFoundException("The email was not found."));
 
         //COMPRUEBA SI ES LA CONTRASEÑA CORRECTA, SINO LANZA EXCEPCION
         if(!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())){
-            throw new InvalidCredentialsException("La contraseña es incorrecta");
+            throw new InvalidCredentialsException("The password is incorrect.");
         }
 
         //GENERA EL TOKEN JWT Y CREA LA RESPUESTA DE EXITO
         String token= jwtUtils.generateToken(user);
         return Response.builder()
                 .status(200)
-                .message("Login con exito")
+                .message("Login successful")
                 .token(token)
-                .expirationTime("6 meses")
+                .expirationTime("6 month")
                 .role(user.getRole().name())
                 .build();
 
@@ -107,7 +107,7 @@ public class UserServiceImplementation implements UserService {
             //SI TODO SALE BIEN, DEVUELVE UNA RESPUESTA EXITOSA
             return Response.builder()
                     .status(200)
-                    .message("Éxito")
+                    .message("Success")
                     .userList(userDtos)
                     .build();
 
@@ -115,7 +115,7 @@ public class UserServiceImplementation implements UserService {
             //SI OCURRE ALGÚN ERROR, DEVUELVE UNA RESPUESTA DE ERROR
             return Response.builder()
                     .status(500)
-                    .message("Error al obtener la lista de usuarios: " + exception.getMessage())
+                    .message("Error retrieving the user list: " + exception.getMessage())
                     .build();
         }
     }
@@ -129,11 +129,11 @@ public class UserServiceImplementation implements UserService {
         String email=authentication.getName();
 
         //LOGUEA EL EMAIL PARA REGISTROS DE SEGUIMIENTO
-        log.info("User email es: " +email);
+        log.info("User email is: " +email);
 
         //SE BUSCA EL USUARIO POR EL EMAIL, SI NO SE ENCUENTRA LANZA EXCEPCION
         return userRepository.findByEmail(email)
-                .orElseThrow(()->new UsernameNotFoundException("No se ha encontrado el usuario"));
+                .orElseThrow(()->new UsernameNotFoundException("The user was not found."));
     }
 
     @Override

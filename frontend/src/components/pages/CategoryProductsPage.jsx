@@ -34,7 +34,7 @@ const CategoryProductsPage=()=>{
             setTotalPages(Math.ceil(allProducts.length / itemsPerPage));
             setProducts(allProducts.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
         }catch (error) {
-            setError(error.response?.data?.message || error.message || 'No se puede obtener los productos de esa categoria')
+            setError(error.response?.data?.message || error.message || 'Unable to fetch products from this category.')
         }
     }
 

@@ -56,7 +56,7 @@ public class AddressServiceImplementation implements AddressService {
         addressRepository.save(address);
 
         // MENSAJE DE CONFIRMACIÓN
-        String message = "Dirección actualizada correctamente";
+        String message = "Address updated successfully.";
 
         // RETORNA UNA RESPUESTA EXITOSA CON EL ESTADO Y MENSAJE
         return Response.builder()

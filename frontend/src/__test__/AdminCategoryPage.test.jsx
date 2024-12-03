@@ -43,33 +43,33 @@ describe("AdminCategoryPage Component", () => {
     // Esperar a que las categorías se carguen
     const categories = await waitFor(() => screen.findAllByRole("listitem"));
     expect(categories).toHaveLength(2);
-    expect(screen.getByText("Categorías")).toBeInTheDocument();
+    expect(screen.getByText("Categories")).toBeInTheDocument();
     expect(screen.getByText("Categoría 1")).toBeInTheDocument();
     expect(screen.getByText("Categoría 2")).toBeInTheDocument();
   });
 
-  it("debería navegar a la página de añadir categoría al hacer clic en 'Añadir Categoría'", () => {
+  it("debería navegar a la página de añadir categoría al hacer clic en 'Add Category'", () => {
     render(
       <Router>
         <AdminCategoryPage />
       </Router>
     );
 
-    const addButton = screen.getByText("Añadir Categoría");
+    const addButton = screen.getByText("Add Category");
     fireEvent.click(addButton);
 
     // Aquí debes simular la navegación, dependiendo de cómo esté configurado el router.
     expect(window.location.pathname).toBe("/admin/add-category");
   });
 
-  it("debería navegar a la página de edición de categoría al hacer clic en 'Editar'", async () => {
+  it("debería navegar a la página de edición de categoría al hacer clic en 'Edit'", async () => {
     render(
       <Router>
         <AdminCategoryPage />
       </Router>
     );
 
-    const editButtons = await waitFor(() => screen.getAllByText("Editar"));
+    const editButtons = await waitFor(() => screen.getAllByText("Edit"));
     fireEvent.click(editButtons[0]);
 
     // Aquí debes simular la navegación, dependiendo de cómo esté configurado el router.
@@ -86,7 +86,7 @@ describe("AdminCategoryPage Component", () => {
       </Router>
     );
 
-    const deleteButtons = await waitFor(() => screen.getAllByText("Borrar"));
+    const deleteButtons = await waitFor(() => screen.getAllByText("Delete"));
     fireEvent.click(deleteButtons[0]);
 
     // Verificar que se haya llamado a deleteCategory con el ID correcto
@@ -108,7 +108,7 @@ describe("AdminCategoryPage Component", () => {
       </Router>
     );
 
-    const deleteButtons = await waitFor(() => screen.getAllByText("Borrar"));
+    const deleteButtons = await waitFor(() => screen.getAllByText("Delete"));
     fireEvent.click(deleteButtons[0]);
 
     // Verificar que no se haya llamado a deleteCategory

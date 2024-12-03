@@ -8,10 +8,10 @@ const AdminPage=()=>{
 
     return(
         <div className="admin-page">
-            <h1>Bienvenido Admin</h1>
-            <button onClick={()=>navigate("/admin/categories")}>Gestionar Categorias</button>
-            <button onClick={()=>navigate("/admin/products")}>Gestionar Productos</button>
-            <button onClick={()=>navigate("/admin/orders")}>Gestionar Pedidos</button>
+            <h1>Welcome Admin</h1>
+            <button onClick={()=>navigate("/admin/categories")}>Manage Categories</button>
+            <button onClick={()=>navigate("/admin/products")}>Manage Products</button>
+            <button onClick={()=>navigate("/admin/orders")}>Manage Orders</button>
         
         </div>
     )

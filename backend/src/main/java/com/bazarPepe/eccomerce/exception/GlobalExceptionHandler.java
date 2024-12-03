@@ -16,7 +16,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Response> handleAllException(Exception exception, WebRequest request) {
         Response errorResponse = Response.builder()
                 .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
-                .message("Datos incorrectos, por favor intentalo de nuevo.")
+                .message("Incorrect data, please try again.")
                 .build();
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -41,7 +41,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Response> handleValidationExceptions(MethodArgumentNotValidException ex, WebRequest request) {
-        String errorMessage = "Dato incorrecto, pruebe otra opción.";
+        String errorMessage = "Incorrect data, please try another option.";
 
         Response errorResponse = Response.builder()
                 .status(HttpStatus.BAD_REQUEST.value())
@@ -53,7 +53,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<Response> handleConstraintViolationException(ConstraintViolationException ex) {
-        String errorMessage = "Dato incorrecto, pruebe otra opción.";
+        String errorMessage = "Incorrect data, please try another option.";
 
         Response errorResponse = Response.builder()
                 .status(HttpStatus.BAD_REQUEST.value())

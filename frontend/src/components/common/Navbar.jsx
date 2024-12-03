@@ -1,10 +1,13 @@
 import React, {useState} from "react";
 import '../../style/navbar.css';
 import { NavLink, useNavigate } from "react-router-dom";
+import { useCart } from '../context/CartContext'; // HOOK PARA EL CONTEXTO DEL CARRITO
 import ApiService from "../../service/ApiService";
 
 //COMPONENTE NAVBAR PARA LA BARRA DE NAVEGACION
 const Navbar=()=>{
+    // OBTENEMOS EL ESTADO DEL CARRITO Y LA FUNCIÓN dispatch DEL CONTEXTO
+    const { cart, dispatch } = useCart();
 
     //ESTADO LOCAL PARA EL VALOR DEL CAMPO DE BUSQUEDA
     const [searchValue,setSearchValue]=useState("");
@@ -29,11 +32,12 @@ const Navbar=()=>{
 
     //MANEJA EL CIERRE DE SESION DEL USUARIO
     const handleLogout=()=>{
-        const confirm=window.confirm("Estas seguro de que quieres cerrar sesion?");
+        const confirm=window.confirm("Are you sure you want to log out?");
         if(confirm){
             ApiService.logout();
             setTimeout(()=>{
                 navigate('/login')
+                dispatch({ type: 'CLEAR_CART' });
             },500);
         }
     }
@@ -59,7 +63,7 @@ const Navbar=()=>{
             {/* FORMULARIO DE BÚSQUEDA */}
             <form className="navbar-search" onSubmit={handleSearchSubmit}>
                 <input type="text" 
-                       placeholder="Busca productos" 
+                       placeholder="Search products" 
                        value={searchValue} 
                        onChange={handleSearchChange}
                 />
@@ -69,12 +73,12 @@ const Navbar=()=>{
             {/* LINKS DE NAVEGACIÓN */}
             <div className="navbar-link">
                 <NavLink to="/" onClick={handleHomeClick}>Home</NavLink>
-                <NavLink to="/categories">Categorias</NavLink>
-                { isAuthenticated && <NavLink to="/profile">Mi Perfil</NavLink>}
+                <NavLink to="/categories">Categories</NavLink>
+                { isAuthenticated && <NavLink to="/profile">My Profile</NavLink>}
                 { isAdmin && <NavLink to="/admin">Admin</NavLink>}
                 { !isAuthenticated && <NavLink to="/login">Login</NavLink>}
                 { isAuthenticated && <NavLink onClick={handleLogout}>Logout</NavLink>}
-                <NavLink to="/cart">Carrito</NavLink>
+                <NavLink to="/cart">Cart</NavLink>
             </div>
 
 

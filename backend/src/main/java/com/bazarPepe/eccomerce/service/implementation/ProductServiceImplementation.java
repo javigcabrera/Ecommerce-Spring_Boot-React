@@ -32,16 +32,16 @@ public class ProductServiceImplementation implements ProductService {
     @Override
     public Response createProduct(Long categoryId, MultipartFile image, String name, String description, BigDecimal price) {
         Category category = categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new NotFoundException("No existe esa categoría"));
+                .orElseThrow(() -> new NotFoundException("That category does not exist."));
 
         // Validar que el archivo es una imagen
         if (image == null || image.isEmpty()) {
-            throw new InvalidCredentialsException("La imagen es obligatoria");
+            throw new InvalidCredentialsException("Image is required.");
         }
 
         String contentType = image.getContentType();
         if (contentType == null || !contentType.startsWith("image/")) {
-            throw new InvalidCredentialsException("El archivo proporcionado no es una imagen válida");
+            throw new InvalidCredentialsException("The provided file is not a valid image.");
         }
 
         try {
@@ -55,35 +55,35 @@ public class ProductServiceImplementation implements ProductService {
 
             return Response.builder()
                     .status(200)
-                    .message("Producto creado con éxito")
+                    .message("Product created successfully.")
                     .build();
         } catch (Exception e) {
-            throw new RuntimeException("Error al procesar la imagen", e);
+            throw new RuntimeException("Error processing the image ", e);
         }
     }
 
     @Override
     public Response updateProduct(Long productId, Long categoryId, MultipartFile image, String name, String description, BigDecimal price) {
         Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new NotFoundException("No se ha encontrado el producto"));
+                .orElseThrow(() -> new NotFoundException("The product was not found."));
 
         Category category = null;
         if (categoryId != null) {
             category = categoryRepository.findById(categoryId)
-                    .orElseThrow(() -> new NotFoundException("No existe esa categoría"));
+                    .orElseThrow(() -> new NotFoundException("That category does not exist."));
         }
 
         byte[] productImage = null;
         if (image != null && !image.isEmpty()) {
             String contentType = image.getContentType();
             if (contentType == null || !contentType.startsWith("image/")) {
-                throw new InvalidCredentialsException("El archivo proporcionado no es una imagen válida");
+                throw new InvalidCredentialsException("The provided file is not a valid image.");
             }
 
             try {
                 productImage = image.getBytes();
             } catch (Exception e) {
-                throw new RuntimeException("Error procesando la imagen", e);
+                throw new RuntimeException("Error processing the image ", e);
             }
         }
 
@@ -107,25 +107,25 @@ public class ProductServiceImplementation implements ProductService {
 
         return Response.builder()
                 .status(200)
-                .message("Producto actualizado correctamente")
+                .message("Product updated successfully.")
                 .build();
     }
 
     @Override
     public Response deleteProduct(Long productId) {
         Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new NotFoundException("No se ha encontrado el producto"));
+                .orElseThrow(() -> new NotFoundException("The product was not found."));
         productRepository.delete(product);
         return Response.builder()
                 .status(200)
-                .message("Se ha eliminado el producto correctamente")
+                .message("The product has been deleted successfully.")
                 .build();
     }
 
     @Override
     public Response getProductById(Long productId) {
         Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new NotFoundException("No se ha encontrado el producto"));
+                .orElseThrow(() -> new NotFoundException("The product was not found."));
         ProductDto productDto = entityDtoMapper.mapProductToDtoBasic(product);
         return Response.builder()
                 .status(200)
@@ -149,7 +149,7 @@ public class ProductServiceImplementation implements ProductService {
     public Response getProductsByCategory(Long categoryId) {
         List<Product> productsByCategory = productRepository.findByCategoryId(categoryId);
         if (productsByCategory == null || productsByCategory.isEmpty()) {
-            throw new NotFoundException("No se han encontrado productos para esta categoría");
+            throw new NotFoundException("No products were found for this category.");
         }
         List<ProductDto> productDtoList = productsByCategory.stream()
                 .map(entityDtoMapper::mapProductToDtoBasic)
@@ -165,7 +165,7 @@ public class ProductServiceImplementation implements ProductService {
     public Response searchProduct(String searchValue) {
         List<Product> products = productRepository.findByNameContainingOrDescriptionContaining(searchValue, searchValue);
         if (products.isEmpty()) {
-            throw new NotFoundException("No se han encontrado productos");
+            throw new NotFoundException("No products were found.");
         }
         List<ProductDto> productDtoList = products.stream()
                 .map(entityDtoMapper::mapProductToDtoBasic)

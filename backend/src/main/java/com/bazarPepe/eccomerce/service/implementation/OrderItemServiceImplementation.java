@@ -48,7 +48,7 @@ public class OrderItemServiceImplementation implements OrderItemService {
                 .and(OrderItemSpecification.hasItemId(itemId));
         Page<OrderItem>orderItemPage=orderItemRepository.findAll(specification,pageable);
         if(orderItemPage.isEmpty()){
-            throw new NotFoundException("No se ha encontrado el pedido");
+            throw new NotFoundException("The order was not found.");
         }
         List<OrderItemDto>orderItemDtos=orderItemPage.getContent().stream()
                 .map(entityDtoMapper::mapOrderItemToDtoPlusProductAndUser)
@@ -68,7 +68,7 @@ public class OrderItemServiceImplementation implements OrderItemService {
         //MAP ORDER REQUEST ITEM TO ORDER ENTITY
         List<OrderItem>orderItems=orderRequest.getItems().stream().map(orderItemRequest -> {
             Product product=productRepository.findById(orderItemRequest.getProductId())
-                    .orElseThrow(()->new NotFoundException("No se encuentra el producto"));
+                    .orElseThrow(()->new NotFoundException("The product was not found."));
             OrderItem orderItem=new OrderItem();
             orderItem.setProduct(product);
             orderItem.setQuantity(orderItemRequest.getQuantity());
@@ -95,20 +95,20 @@ public class OrderItemServiceImplementation implements OrderItemService {
 
         return Response.builder()
                 .status(200)
-                .message("Se ha completado el pedido")
+                .message("The order has been completed.")
                 .build();
     }
 
     @Override
     public Response updateOrderItemStatus(Long orderItemID, String status) {
         OrderItem orderItem=orderItemRepository.findById(orderItemID)
-                .orElseThrow(()->new NotFoundException("No se ha podido encontrar el producto del pedido"));
+                .orElseThrow(()->new NotFoundException("The product from the order could not be found."));
         orderItem.setStatus(OrderStatus.valueOf(status.toUpperCase()));
         orderItemRepository.save(orderItem);
 
         return Response.builder()
                 .status(200)
-                .message("Se ha actualizado con exito el estado")
+                .message("The status has been successfully updated.")
                 .build();
     }
 }

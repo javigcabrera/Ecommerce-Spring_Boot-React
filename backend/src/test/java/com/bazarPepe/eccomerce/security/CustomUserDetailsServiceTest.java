@@ -62,7 +62,7 @@ class CustomUserDetailsServiceTest {
         Exception exception = assertThrows(NotFoundException.class, () ->
                 customUserDetailsService.loadUserByUsername("notfound@example.com"));
 
-        assertEquals("Usuario/Email no existe", exception.getMessage());
+        assertEquals("User/Email does not exist.", exception.getMessage());
 
         // Verificar que el repositorio fue llamado
         verify(userRepository, times(1)).findByEmail("notfound@example.com");

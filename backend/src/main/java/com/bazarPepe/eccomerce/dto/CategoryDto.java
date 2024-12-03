@@ -21,7 +21,7 @@ public class CategoryDto {
 
     private Long id;
 
-    @NotBlank(message = "El nombre de la categoría no puede estar vacío")
+    @NotBlank(message = "The category name cannot be empty.")
     private String name;
 
     private List<ProductDto> productList;

@@ -35,7 +35,7 @@ const CartPage = () => {
         // VERIFICA SI EL USUARIO ESTÁ AUTENTICADO
         if (!ApiService.isAuthenticated()) {
             // SI NO ESTÁ AUTENTICADO, MUESTRA UN MENSAJE Y REDIRIGE A LOGIN
-            setMessage("Tienes que hacer login antes de hacer el pedido");
+            setMessage("You need to log in before placing the order.");
             setTimeout(() => {
                 setMessage('');
                 navigate("/login");
@@ -69,7 +69,7 @@ const CartPage = () => {
             }
         } catch (error) {
             // SI HAY UN ERROR, MUESTRA EL MENSAJE DE ERROR
-            setMessage(error.response?.data?.message || error.message || 'Se ha producido un error con el pedido');
+            setMessage(error.response?.data?.message || error.message || 'An error occurred with the order.');
             setTimeout(() => {
                 setMessage('');
             }, 3000);
@@ -79,13 +79,13 @@ const CartPage = () => {
     // RENDERIZA LA PÁGINA DEL CARRITO
     return (
         <div className="cart-page">
-            <h1>Carrito</h1>
+            <h1>Cart</h1>
             {/* MUESTRA MENSAJES DE ERROR O INFORMACIÓN */}
             {message && <p className="response-message">{message}</p>}
 
             {/* SI EL CARRITO ESTÁ VACÍO, MUESTRA UN MENSAJE */}
             {cart.length === 0 ? (
-                <p>El carrito está vacío</p>
+                <p>The cart is empty.</p>
             ) : (
                 <div>
                     <ul>
@@ -106,13 +106,13 @@ const CartPage = () => {
                                         <span>{item.quantity}</span>
                                         <button onClick={() => incrementItem(item)}>+</button>
                                     </div>
-                                    <span>€{item.price.toFixed()}</span>
+                                    <span>{item.price.toFixed()}€</span>
                                 </div>
                             </li>
                         ))}
                     </ul>
                     {/* MUESTRA EL TOTAL Y BOTÓN DE CHECKOUT */}
-                    <h2>Total: €{totalPrice.toFixed(2)}</h2>
+                    <h2>Total: {totalPrice.toFixed(2)}€</h2>
                     <button className="checkout-button" onClick={handleCheckout}>Checkout</button>
                 </div>
             )}

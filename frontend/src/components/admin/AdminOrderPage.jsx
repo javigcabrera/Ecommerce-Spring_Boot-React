@@ -42,7 +42,7 @@ const AdminOrderPage = () => {
             setFilteredOrders(orderList.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)); // FILTRA LOS PEDIDOS PARA LA PÁGINA ACTUAL
         } catch (error) {
             // MANEJA LOS ERRORES
-            setError(error.response?.data?.message || error.message || 'No es posible cargar los pedidos');
+            setError(error.response?.data?.message || error.message || 'It is not possible to load the orders.');
             setTimeout(() => {
                 setError('');
             }, 3000);
@@ -80,11 +80,11 @@ const AdminOrderPage = () => {
     // RENDERIZA LA PÁGINA
     return (
         <div className="admin-orders-page">
-            <h2>Pedidos</h2>
+            <h2>Orders</h2>
             {error && <p className="error-message">{error}</p>}
             <div className="filter-container">
                 <div className="statusFilter">
-                    <label htmlFor="statusFilter">Filtrar por Estado </label>
+                    <label htmlFor="statusFilter">Filter by Status </label>
                     {/* SELECT PARA FILTRAR POR ESTADO */}
                     <select id="statusFilter" value={statusFilter} onChange={handleFilterChange}>
                         <option value="">ALL</option>
@@ -99,12 +99,12 @@ const AdminOrderPage = () => {
             <table className="orders-table">
                 <thead>
                     <tr>
-                        <th>ID Pedido</th>
-                        <th>Cliente</th>
-                        <th>Estado</th>
-                        <th>Precio</th>
-                        <th>Fecha emisión</th>
-                        <th>Acciones</th>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Status</th>
+                        <th>Price</th>
+                        <th>Issue Date</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -116,7 +116,7 @@ const AdminOrderPage = () => {
                             <td>€{order.price.toFixed(2)}</td>
                             <td>{new Date(order.createdAt).toLocaleDateString()}</td>
                             <td>
-                                <button onClick={() => handleOrderDetails(order.id)}>Detalles</button>
+                                <button onClick={() => handleOrderDetails(order.id)}>Details</button>
                             </td>
                         </tr>
                     ))}

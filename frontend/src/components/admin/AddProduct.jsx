@@ -48,7 +48,7 @@ const AddProduct = () => {
             }
         } catch (error) {
             // MANEJA LOS ERRORES SI LA PETICIÓN FALLA
-            setMessage(error.response?.data?.message || error.message || 'No se ha podido añadir el producto');
+            setMessage(error.response?.data?.message || error.message || 'The product could not be added.');
         }
     };
 
@@ -56,7 +56,7 @@ const AddProduct = () => {
     return (
         <div>
             <form onSubmit={handleSubmit} className="product-form">
-                <h2>Añadir Producto</h2>
+                <h2>Add Product</h2>
                 {/* MUESTRA MENSAJES SI EXISTEN */}
                 {message && <div className="message">{message}</div>}
                 
@@ -65,7 +65,7 @@ const AddProduct = () => {
                 
                 {/* SELECT PARA ELEGIR UNA CATEGORÍA */}
                 <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)}>
-                    <option value="">Selecciona la categoría</option>
+                    <option value="">Select the category</option>
                     {categories.map((cat) => (
                         <option value={cat.id} key={cat.id}>{cat.name}</option>
                     ))}
@@ -74,14 +74,14 @@ const AddProduct = () => {
                 {/* CAMPO PARA EL NOMBRE DEL PRODUCTO */}
                 <input 
                     type="text" 
-                    placeholder="Nombre Producto"
+                    placeholder="Product Name"
                     value={name}
                     onChange={(e) => setName(e.target.value)} 
                 />
                 
                 {/* CAMPO PARA LA DESCRIPCIÓN DEL PRODUCTO */}
                 <textarea 
-                    placeholder="Descripción Producto"
+                    placeholder="Product Description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)} 
                 />
@@ -89,13 +89,13 @@ const AddProduct = () => {
                 {/* CAMPO PARA EL PRECIO DEL PRODUCTO */}
                 <input 
                     type="number" 
-                    placeholder="Precio"
+                    placeholder="Price"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)} 
                 />
                 
                 {/* BOTÓN PARA ENVIAR EL FORMULARIO */}
-                <button type="submit">Añadir</button>
+                <button type="submit">Add</button>
             </form>
         </div>
     );

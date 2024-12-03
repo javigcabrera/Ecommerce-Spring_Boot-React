@@ -29,7 +29,7 @@ const LoginPage = () => {
             // ENVÍA LOS DATOS DEL FORMULARIO A LA API PARA INICIAR SESIÓN
             const response = await ApiService.loginUser(formData);
             if (response.status === 200) {
-                setMessage("Se ha iniciado sesión con éxito");
+                setMessage("You have logged in successfully.");
                 
                 // GUARDA EL TOKEN Y EL ROL DEL USUARIO EN LOCALSTORAGE
                 localStorage.setItem('token', response.token);
@@ -42,7 +42,7 @@ const LoginPage = () => {
             }
         } catch (error) {
             // SI HAY UN ERROR, MUESTRA EL MENSAJE AL USUARIO
-            setMessage(error.response?.data.message || error.message || "No se ha podido iniciar sesión");
+            setMessage(error.response?.data.message || error.message || "Login failed.");
         }
     };
 
@@ -56,10 +56,10 @@ const LoginPage = () => {
                     />
                 </div>
                 <div className="login-form">
-                    <h2>Iniciar Sesión</h2>
+                    <h2>Log In</h2>
                     {message && <p className="login-message">{message}</p>}
                     <form onSubmit={handleSubmit}>
-                        <label htmlFor="email">Correo Electrónico:</label>
+                        <label htmlFor="email">Email:</label>
                         <input
                             type="email"
                             name="email"
@@ -68,7 +68,7 @@ const LoginPage = () => {
                             onChange={handleChange}
                             required
                         />
-                        <label htmlFor="password">Contraseña:</label>
+                        <label htmlFor="password">Password:</label>
                         <input
                             type="password"
                             name="password"
@@ -77,9 +77,9 @@ const LoginPage = () => {
                             onChange={handleChange}
                             required
                         />
-                        <button type="submit">Acceder</button>
+                        <button type="submit">Access</button>
                         <p className="login-register-link">
-                            ¿No tienes una cuenta? <a href="/register">Regístrate aquí</a>
+                        Don't have an account? <a href="/register">Sign up here</a>
                         </p>
                     </form>
                 </div>
