@@ -23,7 +23,6 @@ const Home = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             setError(null);  // Resetear error al hacer una nueva búsqueda
-            setProducts([]); // Limpiar productos previos para evitar visualización incorrecta
 
             try {
                 let allProducts = []; // Almacena los productos obtenidos
