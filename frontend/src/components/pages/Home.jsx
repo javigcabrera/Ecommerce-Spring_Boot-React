@@ -19,6 +19,11 @@ const Home = () => {
     // NÚMERO DE ELEMENTOS A MOSTRAR POR PÁGINA
     const itemsPerPage = 4;
 
+    useEffect(() => {
+        setCurrentPage(1); // Reinicia a la página 1 cuando cambie el término de búsqueda
+    }, [location.search]);
+
+
     //EFECTO QUE OBTIENE LOS PRODUCTOS CUANDO CAMBIA LA PAGINA O LA BUSQUEDA 
     useEffect(() => {
         const fetchProducts = async () => {
