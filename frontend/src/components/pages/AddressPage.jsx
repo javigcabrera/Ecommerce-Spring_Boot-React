@@ -42,15 +42,47 @@ const AddressPage=()=>{
         }))
     }
 
-    const handSubmit=async(e)=>{
+    const handSubmit = async (e) => {
         e.preventDefault();
+    
+        // Hacer .trim() a todos los valores del objeto 'address'
+        const trimmedAddress = {
+            street: address.street.trim(),
+            city: address.city.trim(),
+            state: address.state.trim(),
+            zipCode: address.zipCode.trim(),
+            country: address.country.trim()
+        };
+    
+        // Validar que los campos no estén vacíos ni contengan solo espacios
+        for (const key in trimmedAddress) {
+            if (trimmedAddress[key] === "") {
+                setError(`${key.charAt(0).toUpperCase() + key.slice(1)} cannot be empty or only spaces.`);
+                return;
+            }
+        }
+    
+        // Validar que zipCode solo contenga números y tenga exactamente 5 caracteres
+        if (!/^\d+$/.test(trimmedAddress.zipCode)) {
+            setError("Zip code must be a valid number.");
+            return;
+        }
+    
+        if (trimmedAddress.zipCode.length !== 5) {
+            setError("Zip code must be exactly 5 digits.");
+            return;
+        }
+    
         try {
-            await ApiService.saveAndUpdateAddress(address);
+            // Usar 'trimmedAddress' para guardar los datos
+            await ApiService.saveAndUpdateAddress(trimmedAddress);
             navigate("/profile");
         } catch (error) {
-            setError(error.response?.data?.message||error.message||"The address could not be registered.");
+            setError(error.response?.data?.message || error.message || "The address could not be registered.");
         }
-    }
+    };
+    
+    
 
     return(
         <div className="address-page">

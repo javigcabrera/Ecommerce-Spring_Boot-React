@@ -18,7 +18,7 @@ const RegisterPage = () => {
 
     // HOOK PARA NAVEGAR ENTRE PÁGINAS
     const navigate = useNavigate();
-    
+
 
     // ACTUALIZA LOS DATOS DEL FORMULARIO CUANDO EL USUARIO ESCRIBE EN LOS CAMPOS
     const handleChange = (e) => {
@@ -28,30 +28,60 @@ const RegisterPage = () => {
 
     // ENVÍA EL FORMULARIO AL SERVIDOR CUANDO SE HACE SUBMIT
     const handleSubmit = async (e) => {
-        e.preventDefault(); // PREVIENE EL REFRESCO AUTOMÁTICO DE LA PÁGINA
+        e.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
+
+        // Aplicar .trim() a todos los campos del formulario
+        const trimmedFormData = {
+            email: formData.email.trim(),
+            name: formData.name.trim(),
+            phoneNumber: formData.phoneNumber.trim(),
+            password: formData.password.trim(),
+        };
+
+        // Validar que los campos no estén vacíos
+        for (const key in trimmedFormData) {
+            if (trimmedFormData[key] === "") {
+                setMessage(`${key.charAt(0).toUpperCase() + key.slice(1)} cannot be empty or only spaces.`);
+                return;
+            }
+        }
+
+        // Validar que el campo phoneNumber solo contenga números
+        if (!/^\d+$/.test(trimmedFormData.phoneNumber)) {
+            setMessage("Phone number must only contain numbers.");
+            return;
+        }
+
+        // Validar que el phoneNumber tenga exactamente 9 dígitos
+        if (trimmedFormData.phoneNumber.length !== 9) {
+            setMessage("Phone number must be exactly 9 digits.");
+            return;
+        }
+
         try {
-            // ENVÍA LOS DATOS DEL FORMULARIO A LA API PARA REGISTRAR UN NUEVO USUARIO
-            const response = await ApiService.registerUser(formData);
+            // Enviar los datos procesados al servidor
+            const response = await ApiService.registerUser(trimmedFormData);
             if (response.status === 200) {
                 setMessage("User registered successfully.");
-                // REDIRIGE A LA PÁGINA DE LOGIN DESPUÉS DE 4 SEGUNDOS
+                // Redirigir al login después de 4 segundos
                 setTimeout(() => {
                     navigate("/login");
                 }, 4000);
             }
         } catch (error) {
-            // OBTENEMOS EL MENSAJE DEL ERROR DEL BACKEND
+            // Manejo de errores del servidor
             const errorMessage = error.response?.data.message || error.message || "No se ha podido registrar al usuario";
-    
-            // DETECTAMOS SI EL ERROR ES DE DUPLICADO Y LO PERSONALIZAMOS
+
+            // Personalizar mensaje si el error es de duplicado
             if (errorMessage.includes("Duplicate entry")) {
                 setMessage("The email already exists, please try another one.");
             } else {
-                setMessage(errorMessage); // MOSTRAMOS EL MENSAJE ORIGINAL SI NO ES DUPLICADO
+                setMessage(errorMessage);
             }
         }
     };
-    
+
+
 
     return (
         <div className="register-container">
@@ -98,7 +128,7 @@ const RegisterPage = () => {
                         />
                         <button type="submit">Sign Up</button>
                         <p className="register-link">
-                        Do you already have an account? <a href="/login">Login</a>
+                            Do you already have an account? <a href="/login">Login</a>
                         </p>
                     </form>
                 </div>
